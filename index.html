@@ -72,6 +72,17 @@ section.s.w{background:#fff}
 .ftr .socials a{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:38px;height:36px;padding:0 10px;border:1px solid var(--line);border-radius:10px;color:var(--royal);font-size:.82rem;font-weight:700;transition:background .2s,border-color .2s}
 .ftr .socials a:hover{background:var(--soft);border-color:var(--sky)}
 .ftr .socials svg{width:17px;height:17px;fill:currentColor;flex:none}
+.nav a.nav-ex{background:linear-gradient(135deg,#2563EB,#0E8F82);color:#fff;border-radius:10px}
+.nav a.nav-ex:hover{background:linear-gradient(135deg,#1D4ED8,#0B7A6F)}
+.showcase{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(135deg,#DCEBFF,#DDF7F3);border-radius:24px;padding:28px}
+.showcase .h2{margin-bottom:6px}.showcase .lead{margin:0}
+.ftr .team{gap:16px;align-items:stretch}
+.ftr .role{flex:1 1 220px;max-width:340px;background:var(--page);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.ftr .role>b{color:var(--royal);font-size:.9rem;margin-bottom:2px}
+.ftr .nm{display:block;font-weight:800;font-size:1.05rem;color:var(--ink)}
+.ftr .sub{display:block;color:var(--muted);font-weight:600;font-size:.95rem}
+.ftr .join{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:6px 14px;border-radius:10px;background:var(--royal);color:#fff;font-weight:700;font-size:.85rem}
+.ftr .join:hover{background:#1D4ED8}
 .rv{opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}.rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
 /* forms */
@@ -283,7 +294,9 @@ const P = {
   out: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>',
   dash: '<rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/>',
   list: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
-  menu: '<path d="M3 6h18M3 12h18M3 18h18"/>'
+  menu: '<path d="M3 6h18M3 12h18M3 18h18"/>',
+  ext: '<path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
+  send: '<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>'
 };
 const ic = n => `<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${P[n] || ""}</svg>`;
 
@@ -374,16 +387,21 @@ function header() {
   <button class="burger" data-act="burger" aria-label="menu">${ic("menu")}</button>
   <nav class="nav" id="nav">${NAV.map(n => `<button data-go="${n[0]}">${L(n[1], n[2])}</button>`).join("")}
    <button data-go="paths">${L("تسجيل المشاركة", "Register")}</button>
+   <a class="nav-ex" href="https://edumedia.ps" target="_blank" rel="noopener noreferrer">${ic("ext")}${L("نماذج من أعمال المعلمين", "Examples of teachers' work")}</a>
    <button data-act="lang">${ic("globe")}${lang === "ar" ? "English" : "العربية"}</button>
    <a class="quiet" href="#/admin" title="${L("دخول الإدارة", "Admin")}" aria-label="${L("دخول الإدارة", "Admin")}">${ic("lock")}</a></nav></div></header>`;
 }
 function footer() {
-  return `<footer class="ftr"><div class="wrap"><div class="cr"><div><b>إعداد الموقع:</b>م. شهد محمد اسليم<a class="ph" dir="ltr" href="tel:+972567943856">+972567943856</a>
+  return `<footer class="ftr"><div class="wrap"><div class="cr team">
+  <div class="role"><b>تنفيذ</b><span class="nm">النادي التكنولوجي</span><span class="sub">فريق منصة إديوميديا</span>
+    <a class="join" href="https://t.me/Tithium_Coda" target="_blank" rel="noopener noreferrer">${ic("send")}<span>${L("انضم إلينا على تيليجرام", "Join us on Telegram")}</span></a></div>
+  <div class="role"><b>تصميم الموقع</b><span class="nm">م. شهد اسليم</span><a class="ph" dir="ltr" href="tel:+972567943856">+972567943856</a>
   <div class="socials" aria-label="روابط شهد اسليم">
     <a href="https://www.instagram.com/apqarin_lab?cnvx=MXg5MXg4ZnB4a254aA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2"/></svg><span>Instagram</span></a>
     <a href="https://www.linkedin.com/in/shahed-esleem-283050378?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4ZM3.4 9.5H7v11H3.4v-11Zm5.8 0h3.5V11h.1c.5-.9 1.7-1.9 3.5-1.9 3.7 0 4.4 2.4 4.4 5.5v5.9h-3.7v-5.2c0-1.2 0-2.8-1.8-2.8s-2.1 1.3-2.1 2.7v5.3H9.2v-11Z"/></svg><span>LinkedIn</span></a>
     <a href="https://github.com/shahedesleem529-cyber" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.5 21.6c.6.1.8-.2.8-.6v-2.1c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8 2.2 3.5 1.5.1-.8.4-1.3.8-1.6-2.5-.3-5.1-1.2-5.1-5.5 0-1.2.4-2.1 1.1-2.9-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 1.1a10.4 10.4 0 0 1 5.5 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8 1.1 1.7 1.1 2.9 0 4.3-2.6 5.2-5.1 5.5.4.4.8 1 .8 2v3c0 .4.2.7.8.6A11.1 11.1 0 0 0 12 .9Z"/></svg><span>GitHub</span></a>
-  </div></div><div><b>إشراف:</b>م. أيمن العكلوك<a class="ph" dir="ltr" href="tel:+972599526006">+972 59-952-6006</a></div></div>
+  </div></div>
+  <div class="role"><b>فكرة وإشراف</b><span class="nm">م. أيمن العكلوك</span><a class="ph" dir="ltr" href="tel:+972599526006">+972 59-952-6006</a></div></div>
   <p>${L("التعليم والتكنولوجيا، معًا نصنع الأثر.", "Education and technology, together we make an impact.")}</p></div></footer>`;
 }
 const shell = inner => header() + `<main>${inner}</main>` + footer();
@@ -418,6 +436,7 @@ function pHome() {
   <section class="s" id="paths"><div class="wrap"><h2 class="h2">${L("مسارات المشاركة", "Participation paths")}</h2><div class="grid g2" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
    ${PATHS.map(p => `<div class="card path rv ${FORMS[p[0]].color}"><div class="ico">${ic(p[1])}</div><h3>${L(p[2], p[3])}</h3><p>${L(p[4], p[5])}</p><a class="btn" href="#/register/${p[0]}">${L("سجل الآن", "Register now")}</a></div>`).join("")}</div></div></section>
   <section class="s w"><div class="wrap"><h2 class="h2">${L("كيف نتعاون؟", "How it works")}</h2><ol class="steps" style="padding:0">${HOW.map(h => `<li>${L(h[0], h[1])}</li>`).join("")}</ol></div></section>
+  <section class="s w" id="showcase"><div class="wrap"><div class="showcase"><div><h2 class="h2">${L("نماذج من أعمال المعلمين", "Examples of teachers' work")}</h2><p class="lead">${L("اطّلع على نماذج من الأنشطة والتطبيقات التعليمية التفاعلية التي أنتجها المعلمون.", "Browse examples of interactive learning activities and apps produced by teachers.")}</p></div><a class="btn" href="https://edumedia.ps" target="_blank" rel="noopener noreferrer">${ic("ext")}${L("زيارة المنصة", "Visit the platform")}</a></div></div></section>
   <section class="s"><div class="wrap"><div class="band"><h2 class="h2">${L("معًا نحو تجربة تعليمية أكثر ابتكارًا", "Together toward a more innovative learning experience")}</h2>
    <p class="lead" style="margin:auto">${L("نؤمن بأن تطوير التعليم يحتاج إلى تكامل الخبرات، وأن الجمع بين المعرفة التربوية والمهارات التقنية يفتح آفاقًا جديدة لإنتاج حلول تعليمية مبتكرة.", "We believe improving education takes complementary expertise, and that combining pedagogical knowledge with technical skills opens new ways to build innovative learning solutions.")}</p></div></div></section>`);
 }
