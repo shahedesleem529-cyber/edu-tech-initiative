@@ -68,6 +68,10 @@ section.s.w{background:#fff}
 .ftr .cr{display:flex;flex-wrap:wrap;justify-content:center;gap:28px;margin-bottom:14px}
 .ftr p{margin:0;color:var(--royal);font-weight:700}
 .ftr .ph{display:block;font-weight:600;color:var(--ink);font-size:.95rem}
+.ftr .socials{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:10px;direction:ltr}
+.ftr .socials a{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:38px;height:36px;padding:0 10px;border:1px solid var(--line);border-radius:10px;color:var(--royal);font-size:.82rem;font-weight:700;transition:background .2s,border-color .2s}
+.ftr .socials a:hover{background:var(--soft);border-color:var(--sky)}
+.ftr .socials svg{width:17px;height:17px;fill:currentColor;flex:none}
 .rv{opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}.rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
 /* forms */
@@ -374,7 +378,12 @@ function header() {
    <a class="quiet" href="#/admin" title="${L("دخول الإدارة", "Admin")}" aria-label="${L("دخول الإدارة", "Admin")}">${ic("lock")}</a></nav></div></header>`;
 }
 function footer() {
-  return `<footer class="ftr"><div class="wrap"><div class="cr"><div><b>إعداد الموقع:</b>م. شهد محمد اسليم<a class="ph" dir="ltr" href="tel:+972567943856">+972567943856</a></div><div><b>إشراف:</b>م. أيمن العكلوك<a class="ph" dir="ltr" href="tel:+972599526006">+972 59-952-6006</a></div></div>
+  return `<footer class="ftr"><div class="wrap"><div class="cr"><div><b>إعداد الموقع:</b>م. شهد محمد اسليم<a class="ph" dir="ltr" href="tel:+972567943856">+972567943856</a>
+  <div class="socials" aria-label="روابط شهد اسليم">
+    <a href="https://www.instagram.com/apqarin_lab?cnvx=MXg5MXg4ZnB4a254aA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2"/></svg><span>Instagram</span></a>
+    <a href="https://www.linkedin.com/in/shahed-esleem-283050378?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4ZM3.4 9.5H7v11H3.4v-11Zm5.8 0h3.5V11h.1c.5-.9 1.7-1.9 3.5-1.9 3.7 0 4.4 2.4 4.4 5.5v5.9h-3.7v-5.2c0-1.2 0-2.8-1.8-2.8s-2.1 1.3-2.1 2.7v5.3H9.2v-11Z"/></svg><span>LinkedIn</span></a>
+    <a href="https://github.com/shahedesleem529-cyber" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.5 21.6c.6.1.8-.2.8-.6v-2.1c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8 2.2 3.5 1.5.1-.8.4-1.3.8-1.6-2.5-.3-5.1-1.2-5.1-5.5 0-1.2.4-2.1 1.1-2.9-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 1.1a10.4 10.4 0 0 1 5.5 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8 1.1 1.7 1.1 2.9 0 4.3-2.6 5.2-5.1 5.5.4.4.8 1 .8 2v3c0 .4.2.7.8.6A11.1 11.1 0 0 0 12 .9Z"/></svg><span>GitHub</span></a>
+  </div></div><div><b>إشراف:</b>م. أيمن العكلوك<a class="ph" dir="ltr" href="tel:+972599526006">+972 59-952-6006</a></div></div>
   <p>${L("التعليم والتكنولوجيا، معًا نصنع الأثر.", "Education and technology, together we make an impact.")}</p></div></footer>`;
 }
 const shell = inner => header() + `<main>${inner}</main>` + footer();
