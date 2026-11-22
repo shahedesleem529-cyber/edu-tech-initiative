@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>التوأمة التربوية والتقنية | Educational & Technology Integration Initiative</title>
+<meta name="description" content="مبادرة تجمع التربية والتكنولوجيا لتمكين المعلمين والتربويين من تحويل أفكارهم التعليمية إلى تجارب رقمية تفاعلية.">
+<meta property="og:title" content="التوأمة التربوية والتقنية">
+<meta property="og:description" content="نحو تعليم أكثر تفاعلًا، نصنعه بأيدينا">
+<meta name="theme-color" content="#2563EB">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232563EB'/%3E%3Cstop offset='1' stop-color='%2314B8A6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ccircle cx='24' cy='32' r='11' fill='none' stroke='%23fff' stroke-width='5'/%3E%3Ccircle cx='40' cy='32' r='11' fill='none' stroke='%23fff' stroke-width='5' opacity='.8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--royal:#2563EB;--sky:#38BDF8;--teal:#14B8A6;--violet:#A78BFA;--page:#F0F7FF;--soft:#EAF3FF;--ink:#183153;--muted:#64748B;--line:#D3E3F8;--bad:#DC2626}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;font-family:Cairo,"IBM Plex Sans Arabic",system-ui,sans-serif;background:var(--page);color:var(--ink);line-height:1.85;font-size:16px}
+a{color:var(--royal);text-decoration:none}
+h1,h2,h3{line-height:1.45;margin:0 0 .5em}
+svg.i{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.hdr{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;gap:14px;min-height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);font-size:1.05rem}
+.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--royal),var(--teal));display:grid;place-items:center;color:#fff}
+.nav{display:flex;gap:4px;margin-inline-start:auto;align-items:center}
+.nav button,.nav a{background:none;border:0;font:inherit;font-weight:600;color:var(--ink);padding:8px 12px;border-radius:10px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.nav button:hover,.nav a:hover{background:var(--soft)}
+.nav .quiet{color:#8aa0bd;padding:8px}
+.burger{display:none;margin-inline-start:auto;background:var(--soft);border:0;border-radius:10px;padding:8px 10px;color:var(--ink);cursor:pointer}
+@media(max-width:900px){.burger{display:block}.nav{display:none;position:absolute;top:68px;inset-inline:0;background:#fff;flex-direction:column;align-items:stretch;padding:12px 20px;border-bottom:1px solid var(--line);margin:0}.nav.open{display:flex}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:12px 22px;font:inherit;font-weight:700;cursor:pointer;transition:transform .15s,box-shadow .15s;background:linear-gradient(135deg,var(--royal),#3b82f6);color:#fff;box-shadow:0 8px 20px -8px rgba(37,99,235,.6)}
+.btn:hover{transform:translateY(-2px)}.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn.alt{background:#fff;color:var(--royal);border:1.5px solid var(--royal);box-shadow:none}
+.btn.ghost{background:var(--soft);color:var(--ink);box-shadow:none}
+.btn.bad{background:#fff;color:var(--bad);border:1.5px solid var(--bad);box-shadow:none}
+.btn.sm{padding:6px 14px;font-size:.9rem;border-radius:10px}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.hero{background:radial-gradient(1000px 420px at 85% -10%,#cfe6ff 0,transparent 60%),radial-gradient(700px 400px at 0 100%,#d9f6f1 0,transparent 60%),var(--page)}
+.hero .wrap{display:grid;gap:30px;padding-block:56px;align-items:center}
+@media(min-width:900px){.hero .wrap{grid-template-columns:1.1fr .9fr;padding-block:84px}}
+.hero h1{font-size:clamp(2rem,5vw,3.3rem);font-weight:800}
+.hero p{color:var(--muted);font-size:1.12rem;max-width:34em}
+.row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+section.s{padding:64px 0}
+section.s.w{background:#fff}
+.h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;margin-bottom:10px}
+.lead{color:var(--muted);max-width:46em;font-size:1.05rem}
+.grid{display:grid;gap:18px;margin-top:28px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:#fff;border-radius:20px;padding:22px;box-shadow:0 4px 20px -6px rgba(37,99,235,.18);border:1px solid #E3EEFC}
+.card h3{font-size:1.1rem}.card p{color:var(--muted);margin:0}
+.ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:12px;background:var(--soft);color:var(--royal)}
+.t-teal .ico{background:#DDF7F3;color:#0E8F82}.t-violet .ico{background:#EFE9FE;color:#7C5CE0}
+.path{display:flex;flex-direction:column;gap:10px;border-top:5px solid var(--royal)}
+.path.t-teal{border-color:var(--teal)}.path.t-violet{border-color:var(--violet)}
+.path .btn{margin-top:auto;align-self:flex-start}
+.steps{counter-reset:s;display:grid;gap:14px;margin-top:28px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.steps li{list-style:none;display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:18px;padding:18px;border:1px solid #E3EEFC}
+.steps li:before{counter-increment:s;content:counter(s);flex:none;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--royal),var(--teal));color:#fff;display:grid;place-items:center;font-weight:800}
+.band{background:linear-gradient(135deg,#DCEBFF,#DDF7F3 60%,#EFE9FE);border-radius:28px;padding:40px 28px;text-align:center}
+.vision{font-size:clamp(1.25rem,2.6vw,1.75rem);font-weight:700;max-width:30em;margin:0 auto}
+.ftr{background:#fff;border-top:1px solid var(--line);padding:34px 0;margin-top:0;text-align:center}
+.ftr b{display:block;font-size:.85rem;color:var(--muted);font-weight:600}
+.ftr .cr{display:flex;flex-wrap:wrap;justify-content:center;gap:28px;margin-bottom:14px}
+.ftr p{margin:0;color:var(--royal);font-weight:700}
+.ftr .ph{display:block;font-weight:600;color:var(--ink);font-size:.95rem}
+.rv{opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+/* forms */
+.fcard{max-width:760px;margin:30px auto 60px;padding:26px}
+.prog{height:8px;background:var(--soft);border-radius:8px;overflow:hidden;margin:14px 0 4px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--royal),var(--teal));transition:width .3s}
+.fld{margin-bottom:18px}.lbl{display:block;font-weight:700;margin-bottom:6px}.lbl em{color:var(--bad);font-style:normal;margin-inline-start:4px}
+.in{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;font:inherit;color:var(--ink);background:#fff}
+.in:focus{border-color:var(--royal);outline:0;box-shadow:0 0 0 3px rgba(56,189,248,.3)}
+.in[readonly]{background:var(--soft)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{cursor:pointer}.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span{display:inline-block;padding:8px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;font-weight:600;transition:.15s}
+.opt input:checked+span{background:var(--royal);border-color:var(--royal);color:#fff}
+.opt input:focus-visible+span{outline:3px solid var(--sky)}
+.err{color:var(--bad);font-size:.9rem;min-height:0}
+.fld.bad .in,.fld.bad .opt span{border-color:var(--bad)}
+.consent{display:flex;gap:10px;align-items:flex-start;background:var(--soft);padding:14px;border-radius:14px}
+.consent input{margin-top:8px;width:20px;height:20px}
+.nav2{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.alert{padding:12px 16px;border-radius:12px;margin:14px 0;font-weight:600}
+.alert.e{background:#FEE2E2;color:#991B1B}.alert.o{background:#DDF7F3;color:#0B6B60}.alert.w{background:#FEF3C7;color:#78510A}
+.spin{width:16px;height:16px;border:3px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.okp{text-align:center;padding:40px 10px}.okp .big{width:84px;height:84px;margin:0 auto 14px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--sky));color:#fff;display:grid;place-items:center}
+.code{display:inline-block;direction:ltr;background:var(--soft);padding:6px 16px;border-radius:10px;font-family:monospace;font-size:1.1rem;font-weight:700;letter-spacing:.06em}
+/* admin */
+.adm .wrap{max-width:1280px}
+.stats{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin:20px 0}
+.stat{background:#fff;border-radius:18px;padding:16px;border:1px solid #E3EEFC;box-shadow:0 4px 16px -8px rgba(37,99,235,.3)}
+.stat b{display:block;font-size:2rem;line-height:1.2;color:var(--royal)}.stat span{color:var(--muted);font-weight:600}
+.charts{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.hb{display:grid;grid-template-columns:minmax(80px,38%) 1fr 34px;gap:8px;align-items:center;margin:6px 0;font-size:.92rem}
+.hb .bar{background:var(--soft);border-radius:8px;height:12px;overflow:hidden}.hb .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--royal),var(--sky));border-radius:8px}
+.hb span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.hb b{text-align:end}
+.donut{width:170px;height:170px;border-radius:50%;margin:8px auto;position:relative}
+.donut:after{content:"";position:absolute;inset:34px;background:#fff;border-radius:50%}
+.lg{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;font-size:.9rem}.lg i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-inline-end:6px;vertical-align:middle}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0}
+.tabs button{border:0;font:inherit;font-weight:700;padding:9px 18px;border-radius:12px;background:#fff;color:var(--ink);cursor:pointer;border:1.5px solid var(--line)}
+.tabs button.on{background:var(--royal);color:#fff;border-color:var(--royal)}
+.filters{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:14px}
+.tw{overflow-x:auto;background:#fff;border-radius:16px;border:1px solid #E3EEFC}
+table{width:100%;border-collapse:collapse;min-width:820px}
+th,td{padding:11px 14px;text-align:start;border-bottom:1px solid #EAF1FB;white-space:nowrap}
+th{background:var(--soft);font-weight:700;font-size:.92rem}
+td.n{white-space:normal;min-width:150px}.ltr{direction:ltr;unicode-bidi:plaintext}
+.badge{padding:3px 12px;border-radius:99px;font-size:.85rem;font-weight:700;display:inline-block}
+.st-new{background:#DBEAFE;color:#1D4ED8}.st-reviewing{background:#EFE9FE;color:#6D3FD6}.st-accepted{background:#DDF7F3;color:#0B6B60}.st-waitlisted{background:#FEF3C7;color:#78510A}.st-rejected{background:#FEE2E2;color:#991B1B}
+.pager{display:flex;justify-content:center;align-items:center;gap:14px;margin:16px 0}
+.menu{position:relative}.menu summary{list-style:none;cursor:pointer}.menu summary::-webkit-details-marker{display:none}
+.menu .pop{position:absolute;inset-inline-end:0;top:46px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 30px -10px rgba(24,49,83,.3);padding:8px;min-width:230px;z-index:40;display:grid;gap:4px}
+.menu .pop button{background:none;border:0;font:inherit;font-weight:600;text-align:start;padding:9px 12px;border-radius:10px;cursor:pointer;color:var(--ink)}.menu .pop button:hover{background:var(--soft)}
+.kv{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.kv .fld{margin:0}.val{padding:6px 0;font-weight:600;word-break:break-word}
+pre.sql{direction:ltr;text-align:left;background:#F8FBFF;border:1px solid var(--line);border-radius:14px;padding:14px;max-height:340px;overflow:auto;font-size:.8rem;line-height:1.6}
+.center{text-align:center;padding:60px 0}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/plain" id="sql">
+-- =====================================================
+-- Educational & Technology Integration Initiative
+-- Run this whole file once in Supabase > SQL Editor
+-- =====================================================
+create extension if not exists pgcrypto;
+
+do $$ begin
+  create type reg_status as enum ('new','reviewing','accepted','waitlisted','rejected');
+exception when duplicate_object then null; end $$;
+
+-- Admins: only users listed here can read/update/delete registrations
+create table if not exists public.admins (user_id uuid primary key references auth.users(id) on delete cascade);
+alter table public.admins enable row level security;
+drop policy if exists "admin reads own row" on public.admins;
+create policy "admin reads own row" on public.admins for select to authenticated using (user_id = auth.uid());
+
+create or replace function public.is_admin() returns boolean
+language sql security definer stable set search_path = public as
+$$ select exists (select 1 from public.admins where user_id = auth.uid()) $$;
+
+-- Anti-abuse: reject oversized payloads
+create or replace function public.limit_payload() returns trigger language plpgsql as $$
+begin
+  if length(to_jsonb(new)::text) > 20000 then raise exception 'payload too large'; end if;
+  new.email := lower(trim(new.email));
+  return new;
+end $$;
+
+create table if not exists public.technical_registrations (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  status reg_status not null default 'new',
+  notes text,
+  consent boolean not null check (consent),
+  full_name text not null check (char_length(full_name) between 3 and 120),
+  phone text not null check (phone ~ '^\+?[0-9 ()\-]{7,20}$'),
+  email text not null check (email ~* '^[^\s@]+@[^\s@]+\.[^\s@]{2,}$' and char_length(email) <= 160),
+  university text not null, major text not null,
+  study_year text, is_club_member text,
+  skills text[], tools text, experience_level text,
+  has_projects text, projects_examples text,
+  preferred_roles text[], willing_to_help text,
+  weekly_time text, participation_mode text, extra_notes text
+);
+
+create table if not exists public.educational_registrations (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  status reg_status not null default 'new',
+  notes text,
+  consent boolean not null check (consent),
+  full_name text not null check (char_length(full_name) between 3 and 120),
+  phone text not null check (phone ~ '^\+?[0-9 ()\-]{7,20}$'),
+  email text not null check (email ~* '^[^\s@]+@[^\s@]+\.[^\s@]{2,}$' and char_length(email) <= 160),
+  university text not null, edu_major text not null,
+  academic_status text, study_year text, graduation_year text,
+  specialization_field text, subject_interest text,
+  used_digital_tools text, tools_used text[], digital_level text,
+  skills_wanted text[], idea text, team_willingness text,
+  participation_mode text, available_time text, extra_notes text
+);
+
+create table if not exists public.teacher_registrations (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  status reg_status not null default 'new',
+  notes text,
+  consent boolean not null check (consent),
+  full_name text not null check (char_length(full_name) between 3 and 120),
+  phone text not null check (phone ~ '^\+?[0-9 ()\-]{7,20}$'),
+  email text not null check (email ~* '^[^\s@]+@[^\s@]+\.[^\s@]{2,}$' and char_length(email) <= 160),
+  subject text not null, stage text, years_experience text,
+  workplace text, region text,
+  designed_digital text, tools_used text[], produced_app text,
+  skills_wanted text[], needs text, idea text,
+  wants_self_learning text, training_willingness text,
+  participation_mode text, preferred_time text, extra_notes text
+);
+
+do $$
+declare t text;
+begin
+  foreach t in array array['technical_registrations','educational_registrations','teacher_registrations'] loop
+    execute format('create unique index if not exists %I on public.%I (lower(email))', t||'_email_uq', t);
+    execute format('create index if not exists %I on public.%I (phone)', t||'_phone_ix', t);
+    execute format('create index if not exists %I on public.%I (created_at desc)', t||'_created_ix', t);
+    execute format('drop trigger if exists %I on public.%I', t||'_limit', t);
+    execute format('create trigger %I before insert or update on public.%I for each row execute function public.limit_payload()', t||'_limit', t);
+    execute format('alter table public.%I enable row level security', t);
+    execute format('revoke all on public.%I from anon, authenticated', t);
+    execute format('grant insert on public.%I to anon, authenticated', t);
+    execute format('grant select, update, delete on public.%I to authenticated', t);
+    execute format('drop policy if exists "public can submit" on public.%I', t);
+    execute format('create policy "public can submit" on public.%I for insert to anon, authenticated with check (status = ''new'' and notes is null)', t);
+    execute format('drop policy if exists "admin read" on public.%I', t);
+    execute format('create policy "admin read" on public.%I for select to authenticated using (public.is_admin())', t);
+    execute format('drop policy if exists "admin update" on public.%I', t);
+    execute format('create policy "admin update" on public.%I for update to authenticated using (public.is_admin()) with check (public.is_admin())', t);
+    execute format('drop policy if exists "admin delete" on public.%I', t);
+    execute format('create policy "admin delete" on public.%I for delete to authenticated using (public.is_admin())', t);
+  end loop;
+end $$;
+
+-- After creating your admin user in Authentication > Users, run (replace the email):
+-- insert into public.admins (user_id) select id from auth.users where email = 'YOUR_ADMIN_EMAIL';
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+"use strict";
+/* ============ 1) إعدادات الربط مع Supabase / Supabase settings ============
+   ضع هنا رابط المشروع ومفتاح anon العام فقط (Project Settings > API).
+   لا تضع Service Role Key هنا أبدًا. */
+const SUPABASE_URL = "";
+const SUPABASE_ANON_KEY = "";
+
+/* ============ 2) أدوات عامة ============ */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+let lang = "ar";
+try { lang = localStorage.getItem("lang") || "ar"; } catch (e) {}
+const L = (ar, en) => (lang === "ar" ? ar : en);
+let sb = null;
+try { if (SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase) sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); }
+catch (e) { try { sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { persistSession: false, autoRefreshToken: false } }); } catch (e2) { sb = null; } }
+const uuid = () => (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => { const r = Math.random() * 16 | 0; return (c === "x" ? r : (r & 3 | 8)).toString(16); });
+const fmtD = d => new Date(d).toLocaleString(lang === "ar" ? "ar-EG-u-nu-latn" : "en-GB", { dateStyle: "medium", timeStyle: "short" });
+const P = {
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  code: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+  book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+  spark: '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 17v4M17 19h4"/>',
+  cap: '<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/>',
+  layers: '<path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/>',
+  refresh: '<path d="M21 12a9 9 0 0 0-15-6.7L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 15 6.7L21 16"/><path d="M16 16h5v5"/>',
+  target: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+  pen: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+  down: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
+  globe: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/>',
+  check: '<polyline points="20 6 9 17 4 12"/>',
+  search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+  eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  trash: '<path d="M3 6h18"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/>',
+  lock: '<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  gear: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/>',
+  out: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>',
+  dash: '<rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/>',
+  list: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
+  menu: '<path d="M3 6h18M3 12h18M3 18h18"/>'
+};
+const ic = n => `<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${P[n] || ""}</svg>`;
+
+/* ============ 3) تعريف النماذج (مصدر واحد للنماذج والجداول والتصدير) ============ */
+const YN = ["نعم", "لا"], MODE = ["عن بُعد", "حضوريًا", "كلاهما"], LVL = ["مبتدئ", "متوسط", "متقدم"];
+const T3 = ["أقل من 3 ساعات أسبوعيًا", "3 إلى 5 ساعات أسبوعيًا", "أكثر من 5 ساعات أسبوعيًا", "حسب طبيعة المهام"];
+const f = (n, l, t, s, o = {}) => ({ n, l, t, s, ...o });
+const AI_SK = ["تصميم أنشطة تفاعلية", "إنتاج تطبيقات تعليمية", "إنتاج ألعاب تعليمية", "توظيف الذكاء الاصطناعي في التعليم", "تصميم المحتوى التعليمي الرقمي", "إنتاج الرسوم المتحركة التعليمية", "تعديل وتطوير التطبيقات التعليمية"];
+const BASE = [f("full_name", "الاسم الكامل", "text", 0), f("phone", "رقم الجوال", "tel", 0), f("email", "البريد الإلكتروني", "email", 0)];
+const FORMS = {
+  technical: {
+    table: "technical_registrations", sheet: "Technical Team", spec: "major", skillKey: "skills", color: "",
+    title: "الانضمام إلى الفريق التقني", te: "Join the Technical Team",
+    desc: "يهدف هذا النموذج إلى حصر المهارات والخبرات التقنية لدى أعضاء النادي والمهتمين بالمشاركة في المبادرة، للمساهمة في نقل المعرفة ومساعدة المعلمين والتربويين على إنتاج تطبيقات وأنشطة تعليمية تفاعلية.",
+    steps: ["البيانات الأساسية", "المهارات والخبرة", "المشاركة"],
+    fields: [...BASE,
+      f("university", "الجامعة", "text", 0), f("major", "التخصص الجامعي", "text", 0),
+      f("study_year", "السنة الدراسية", "radio", 0, { opts: ["السنة الأولى", "السنة الثانية", "السنة الثالثة", "السنة الرابعة", "خريج", "أخرى"] }),
+      f("is_club_member", "هل أنت عضو في النادي التكنولوجي؟", "radio", 0, { opts: YN }),
+      f("skills", "المجالات التي تمتلك فيها مهارات", "multi", 1, { opts: ["البرمجة وتطوير التطبيقات", "تطوير مواقع الويب", "تصميم UI/UX", "التصميم الجرافيكي", "المونتاج وإنتاج الفيديو", "الملتيميديا والرسوم المتحركة", "Adobe Animate", "الذكاء الاصطناعي وأدوات AI", "إعداد المحتوى التعليمي", "قواعد البيانات", "أخرى"] }),
+      f("tools", "البرامج والأدوات التي تجيد استخدامها", "ta", 1),
+      f("experience_level", "مستوى خبرتك", "radio", 1, { opts: LVL }),
+      f("has_projects", "هل سبق لك تنفيذ مشاريع تقنية أو تعليمية؟", "radio", 1, { opts: YN }),
+      f("projects_examples", "اذكر أمثلة عن مشاريعك", "ta", 1, { r: 0, show: ["has_projects", "نعم"] }),
+      f("preferred_roles", "الدور الذي ترغب في المشاركة فيه", "multi", 2, { opts: ["التدريب ونقل المعرفة", "البرمجة والتطوير", "التصميم والإنتاج", "إعداد المحتوى", "البحث والتجربة", "المساعدة التقنية"] }),
+      f("willing_to_help", "هل لديك استعداد لمساعدة المعلمين على تعلم الأدوات الرقمية؟", "radio", 2, { opts: ["نعم", "أحتاج إلى تطوير مهاراتي أولًا"] }),
+      f("weekly_time", "ما الوقت المتاح لديك للمشاركة؟", "radio", 2, { opts: T3 }),
+      f("participation_mode", "طريقة المشاركة", "radio", 2, { opts: MODE }),
+      f("extra_notes", "هل لديك أي إضافات أو أفكار؟", "ta", 2, { r: 0 })]
+  },
+  educational: {
+    table: "educational_registrations", sheet: "Educational Team", spec: "edu_major", skillKey: "skills_wanted", color: "t-teal",
+    title: "الانضمام إلى المسار التربوي", te: "Join the Educational Path",
+    desc: "ندعو طلبة وخريجي التخصصات التربوية للمشاركة في مبادرة تجمع التربية والتكنولوجيا، بهدف اكتساب مهارات إنتاج التطبيقات والأنشطة التعليمية التفاعلية، والعمل مع فرق تقنية متعددة التخصصات.",
+    steps: ["البيانات الأساسية", "الخبرة الرقمية", "الاهتمامات والمشاركة"],
+    fields: [...BASE,
+      f("university", "الجامعة", "text", 0), f("edu_major", "التخصص التربوي", "text", 0),
+      f("academic_status", "الحالة الأكاديمية", "radio", 0, { opts: ["طالب", "خريج", "معلم حاليًا"] }),
+      f("study_year", "السنة الدراسية", "radio", 0, { opts: ["الأولى", "الثانية", "الثالثة", "الرابعة", "أخرى"], show: ["academic_status", "طالب"] }),
+      f("graduation_year", "سنة التخرج", "text", 0, { r: 0, show: ["academic_status", "خريج"] }),
+      f("specialization_field", "مجال التخصص", "radio", 0, { opts: ["تعليم أساسي", "معلم صف", "تعليم لغة عربية", "تعليم لغة إنجليزية", "تعليم رياضيات", "تعليم علوم", "تكنولوجيا تعليم", "تربية خاصة", "أساليب تدريس", "أخرى"] }),
+      f("subject_interest", "ما المادة أو المجال التعليمي الذي تهتم به؟", "text", 0),
+      f("used_digital_tools", "هل سبق لك استخدام أدوات رقمية في إعداد أنشطة تعليمية؟", "radio", 1, { opts: YN }),
+      f("tools_used", "ما الأدوات التي استخدمتها؟", "multi", 1, { opts: ["Canva", "PowerPoint", "Adobe Animate", "أدوات الذكاء الاصطناعي", "أدوات تصميم أخرى", "لا أمتلك خبرة سابقة"] }),
+      f("digital_level", "مستوى خبرتك الرقمية", "radio", 1, { opts: LVL }),
+      f("skills_wanted", "ما المهارات التي ترغب في اكتسابها؟", "multi", 2, { opts: AI_SK }),
+      f("idea", "هل لديك فكرة تعليمية ترغب في تحويلها إلى تطبيق أو نشاط تفاعلي؟", "ta", 2),
+      f("team_willingness", "هل لديك استعداد للعمل ضمن فريق يجمع التخصصات التربوية والتقنية؟", "radio", 2, { opts: ["نعم", "أرغب في معرفة المزيد أولًا"] }),
+      f("participation_mode", "طريقة المشاركة المفضلة", "radio", 2, { opts: MODE }),
+      f("available_time", "الوقت المتاح للمشاركة", "radio", 2, { opts: T3 }),
+      f("extra_notes", "أي معلومات أو إضافات أخرى", "ta", 2, { r: 0 })]
+  },
+  teacher: {
+    table: "teacher_registrations", sheet: "Teachers", spec: "subject", skillKey: "skills_wanted", color: "t-violet",
+    title: "الانضمام إلى مسار تمكين المعلمين رقميًا", te: "Join the Teachers' Digital Empowerment Path",
+    desc: "تهدف المبادرة إلى تمكين المعلمين والمعلمات من اكتساب المهارات اللازمة لتحويل أفكارهم التعليمية إلى تطبيقات وأنشطة تفاعلية بأنفسهم، باستخدام الأدوات الرقمية وتقنيات الذكاء الاصطناعي، بما يتيح لهم تطوير أعمالهم وتحديثها باستمرار.",
+    steps: ["البيانات الأساسية", "الخبرة الرقمية", "الاحتياجات والمشاركة"],
+    fields: [...BASE,
+      f("subject", "التخصص أو المادة التي تدرّسها", "text", 0),
+      f("stage", "المرحلة التعليمية", "radio", 0, { opts: ["ابتدائي", "إعدادي", "ثانوي", "رياض أطفال", "أخرى"] }),
+      f("years_experience", "سنوات الخبرة في التدريس", "radio", 0, { opts: ["أقل من سنة", "من سنة إلى 3 سنوات", "من 4 إلى 7 سنوات", "أكثر من 7 سنوات"] }),
+      f("workplace", "جهة العمل أو المدرسة", "text", 0, { r: 0 }),
+      f("region", "المحافظة أو المنطقة", "text", 0),
+      f("designed_digital", "هل سبق لك تصميم أنشطة أو مواد تعليمية رقمية؟", "radio", 1, { opts: YN }),
+      f("tools_used", "ما الأدوات التي تستخدمها حاليًا؟", "multi", 1, { opts: ["PowerPoint", "Canva", "أدوات الذكاء الاصطناعي", "برامج التصميم والملتيميديا", "Adobe Animate", "أدوات أخرى", "لا أستخدم أدوات رقمية حاليًا"] }),
+      f("produced_app", "هل سبق لك إنتاج تطبيق تعليمي تفاعلي؟", "radio", 1, { opts: YN }),
+      f("skills_wanted", "ما المهارات التي ترغب في تعلمها؟", "multi", 1, { opts: ["تصميم تطبيقات تعليمية", "إنتاج ألعاب تعليمية", "تصميم أنشطة تفاعلية", "استخدام الذكاء الاصطناعي في التعليم", "إنتاج رسوم متحركة تعليمية", "تعديل وتطوير التطبيقات التعليمية", "إنتاج محتوى تعليمي رقمي"] }),
+      f("needs", "ما أبرز الصعوبات أو الاحتياجات التعليمية التي تتمنى إيجاد حلول رقمية لها؟", "ta", 2),
+      f("idea", "هل لديك فكرة تعليمية ترغب في تحويلها إلى تطبيق أو نشاط تفاعلي؟", "ta", 2),
+      f("wants_self_learning", "هل ترغب في تعلم إنتاج التطبيقات بنفسك دون الاعتماد الدائم على مبرمج؟", "radio", 2, { opts: ["نعم", "أرغب في التعرف على الأدوات أولًا"] }),
+      f("training_willingness", "هل لديك استعداد للمشاركة في التدريب والتطبيق العملي؟", "radio", 2, { opts: ["نعم", "حسب الوقت المتاح"] }),
+      f("participation_mode", "طريقة المشاركة", "radio", 2, { opts: MODE }),
+      f("preferred_time", "الوقت المناسب للمشاركة", "radio", 2, { opts: ["صباحًا", "مساءً", "حسب التنسيق"] }),
+      f("extra_notes", "هل لديك أي ملاحظات أو اقتراحات أخرى؟", "ta", 2, { r: 0 })]
+  }
+};
+const KEYS = Object.keys(FORMS);
+const STATUS = { new: ["جديد", "New"], reviewing: ["قيد المراجعة", "Reviewing"], accepted: ["مقبول", "Accepted"], waitlisted: ["قائمة انتظار", "Waitlisted"], rejected: ["مرفوض", "Rejected"] };
+const stL = s => L(STATUS[s]?.[0] || s, STATUS[s]?.[1] || s);
+const CAT = { technical: ["الفريق التقني", "Technical team", "#2563EB"], educational: ["التخصصات التربوية", "Educational majors", "#14B8A6"], teacher: ["المعلمون والمعلمات", "Teachers", "#A78BFA"] };
+const catL = k => L(CAT[k][0], CAT[k][1]);
+
+/* ============ 4) الصفحات العامة ============ */
+const NAV = [["home", "الرئيسية", "Home"], ["about", "عن المبادرة", "About"], ["paths", "مسارات المشاركة", "Paths"], ["goals", "أهداف المبادرة", "Goals"]];
+function header() {
+  return `<header class="hdr"><div class="wrap">
+  <a class="brand" href="#/"><span class="logo">${ic("layers")}</span><span>${L("التوأمة التربوية والتقنية", "Educational & Tech Integration")}</span></a>
+  <button class="burger" data-act="burger" aria-label="menu">${ic("menu")}</button>
+  <nav class="nav" id="nav">${NAV.map(n => `<button data-go="${n[0]}">${L(n[1], n[2])}</button>`).join("")}
+   <button data-go="paths">${L("تسجيل المشاركة", "Register")}</button>
+   <button data-act="lang">${ic("globe")}${lang === "ar" ? "English" : "العربية"}</button>
+   <a class="quiet" href="#/admin" title="${L("دخول الإدارة", "Admin")}" aria-label="${L("دخول الإدارة", "Admin")}">${ic("lock")}</a></nav></div></header>`;
+}
+function footer() {
+  return `<footer class="ftr"><div class="wrap"><div class="cr"><div><b>إعداد الموقع:</b>م. شهد محمد اسليم<a class="ph" dir="ltr" href="tel:+972567943856">+972567943856</a></div><div><b>إشراف:</b>م. أيمن العكلوك<a class="ph" dir="ltr" href="tel:+972599526006">+972 59-952-6006</a></div></div>
+  <p>${L("التعليم والتكنولوجيا، معًا نصنع الأثر.", "Education and technology, together we make an impact.")}</p></div></footer>`;
+}
+const shell = inner => header() + `<main>${inner}</main>` + footer();
+function heroArt() {
+  const g = (x, y, c, p) => `<g transform="translate(${x},${y}) scale(1.9)" fill="none" stroke="${c}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${P[p]}</g>`;
+  const t = (x, y, s) => `<text x="${x}" y="${y}" text-anchor="middle" font-family="Cairo,sans-serif" font-weight="700" font-size="15" fill="#183153">${s}</text>`;
+  return `<svg viewBox="0 0 420 390" role="img" aria-label="${L("تداخل التعليم والبرمجة والذكاء الاصطناعي والتصميم", "Education, coding, AI and design")}" style="width:100%;max-width:460px;margin:auto;display:block">
+  <circle cx="150" cy="140" r="88" fill="#2563EB" fill-opacity=".16" stroke="#2563EB" stroke-width="2"/><circle cx="270" cy="140" r="88" fill="#38BDF8" fill-opacity=".2" stroke="#0EA5E9" stroke-width="2"/>
+  <circle cx="150" cy="250" r="88" fill="#14B8A6" fill-opacity=".18" stroke="#14B8A6" stroke-width="2"/><circle cx="270" cy="250" r="88" fill="#A78BFA" fill-opacity=".22" stroke="#8B6CF0" stroke-width="2"/>
+  ${g(106, 84, "#1D4ED8", "book")}${g(246, 84, "#0369A1", "code")}${g(106, 224, "#0E8F82", "spark")}${g(246, 224, "#6D3FD6", "pen")}
+  ${t(128, 170, L("التعليم", "Education"))}${t(292, 170, L("البرمجة", "Coding"))}${t(128, 305, L("الذكاء الاصطناعي", "AI"))}${t(292, 305, L("التصميم", "Design"))}
+  <circle cx="210" cy="195" r="34" fill="#fff" stroke="#2563EB" stroke-width="2.5"/>${t(210, 201, L("معًا", "Together"))}</svg>`;
+}
+const OBJ = [["users", "تمكين المعلمين رقميًا", "Digitally empowering teachers"], ["code", "تطوير مهارات إنتاج التطبيقات التعليمية", "Building skills to produce educational apps"], ["spark", "دمج الذكاء الاصطناعي في التعليم", "Integrating AI into education"], ["refresh", "تعزيز التعاون بين التربية والتكنولوجيا", "Strengthening education–technology collaboration"], ["layers", "بناء فرق متعددة التخصصات", "Building multidisciplinary teams"], ["book", "تبادل الخبرات والمعرفة", "Sharing experience and knowledge"], ["target", "تطوير حلول تعليمية قابلة للتحديث", "Developing updatable learning solutions"], ["cap", "الاستثمار في قدرات المعلمين والتربويين", "Investing in educators' capabilities"]];
+const PATHS = [
+  ["technical", "code", "المسار الأول: الفريق التقني", "Path 1: Technical Team", "للطلبة وأعضاء النادي ممن يمتلكون مهارات في البرمجة والتصميم والملتيميديا والذكاء الاصطناعي.", "For students and club members skilled in programming, design, multimedia and AI."],
+  ["educational", "cap", "المسار الثاني: التخصصات التربوية", "Path 2: Educational Majors", "لطلبة وخريجي التخصصات التربوية الراغبين في تطوير مهاراتهم الرقمية والمشاركة في إنتاج محتوى تعليمي تفاعلي.", "For education students and graduates who want to build digital skills and help produce interactive content."],
+  ["teacher", "pen", "المسار الثالث: المعلمون والمعلمات", "Path 3: Teachers", "للمعلمين والمعلمات الراغبين في تعلم أدوات إنتاج التطبيقات والأنشطة التعليمية التفاعلية وتحويل أفكارهم إلى منتجات رقمية.", "For teachers who want to learn tools for producing interactive apps and activities and turn their ideas into digital products."]];
+const HOW = [["التسجيل وتحديد المهارات والاهتمامات.", "Register and state your skills and interests."], ["حصر المشاركين وتصنيف خبراتهم.", "Participants are listed and their experience categorized."], ["تشكيل فرق مشتركة.", "Mixed teams are formed."], ["تبادل المعرفة والتدريب العملي.", "Knowledge exchange and hands-on training."], ["تطوير تطبيقات وأنشطة تعليمية.", "Educational apps and activities are developed."], ["تجربة المنتجات وتطويرها.", "Products are tested and improved."]];
+function pHome() {
+  return shell(`
+  <section class="hero" id="home"><div class="wrap"><div>
+    <h1>${L("نحو تعليم أكثر تفاعلًا، نصنعه بأيدينا", "Toward more interactive education, built with our own hands")}</h1>
+    <p>${L("مساحة تجمع التربية والتكنولوجيا لتمكين المعلمين والتربويين من تحويل أفكارهم التعليمية إلى تجارب رقمية تفاعلية.", "A space that brings education and technology together so teachers and educators can turn their ideas into interactive digital experiences.")}</p>
+    <div class="row"><button class="btn" data-go="paths">${L("انضم إلى المبادرة", "Join the initiative")}</button><button class="btn alt" data-go="about">${L("اكتشف فكرة المبادرة", "Discover the idea")}</button></div>
+  </div>${heroArt()}</div></section>
+  <section class="s w" id="about"><div class="wrap"><h2 class="h2">${L("ما هي المبادرة؟", "What is the initiative?")}</h2>
+   <p class="lead">${L("مبادرة تهدف إلى بناء تعاون حقيقي بين التخصصات التربوية والتقنية، من خلال تشكيل فرق عمل مشتركة تعمل على نقل المعرفة وتبادل الخبرات وتطوير المهارات الرقمية، بما يمكّن المعلمين والمعلمات من إنتاج تطبيقاتهم وأنشطتهم التعليمية التفاعلية بأنفسهم.", "An initiative to build real collaboration between education and technology majors through joint teams that transfer knowledge, exchange experience and develop digital skills, so teachers can produce their own interactive educational apps and activities.")}</p></div></section>
+  <section class="s"><div class="wrap"><div class="band"><h2 class="h2">${L("رؤيتنا", "Our vision")}</h2><p class="vision">${L("معلم يمتلك أدوات المستقبل، وقادر على تحويل أفكاره التعليمية إلى حلول رقمية تفاعلية قابلة للتطوير والتحديث.", "A teacher who owns the tools of the future and can turn educational ideas into interactive digital solutions that can be developed and updated.")}</p></div></div></section>
+  <section class="s w" id="goals"><div class="wrap"><h2 class="h2">${L("أهداف المبادرة", "Initiative goals")}</h2><div class="grid g4">
+   ${OBJ.map((o, i) => `<div class="card rv ${["", "t-teal", "t-violet"][i % 3]}"><div class="ico">${ic(o[0])}</div><h3>${L(o[1], o[2])}</h3></div>`).join("")}</div></div></section>
+  <section class="s" id="paths"><div class="wrap"><h2 class="h2">${L("مسارات المشاركة", "Participation paths")}</h2><div class="grid g2" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+   ${PATHS.map(p => `<div class="card path rv ${FORMS[p[0]].color}"><div class="ico">${ic(p[1])}</div><h3>${L(p[2], p[3])}</h3><p>${L(p[4], p[5])}</p><a class="btn" href="#/register/${p[0]}">${L("سجل الآن", "Register now")}</a></div>`).join("")}</div></div></section>
+  <section class="s w"><div class="wrap"><h2 class="h2">${L("كيف نتعاون؟", "How it works")}</h2><ol class="steps" style="padding:0">${HOW.map(h => `<li>${L(h[0], h[1])}</li>`).join("")}</ol></div></section>
+  <section class="s"><div class="wrap"><div class="band"><h2 class="h2">${L("معًا نحو تجربة تعليمية أكثر ابتكارًا", "Together toward a more innovative learning experience")}</h2>
+   <p class="lead" style="margin:auto">${L("نؤمن بأن تطوير التعليم يحتاج إلى تكامل الخبرات، وأن الجمع بين المعرفة التربوية والمهارات التقنية يفتح آفاقًا جديدة لإنتاج حلول تعليمية مبتكرة.", "We believe improving education takes complementary expertise, and that combining pedagogical knowledge with technical skills opens new ways to build innovative learning solutions.")}</p></div></div></section>`);
+}
+
+/* ============ 5) نماذج التسجيل ============ */
+const norm = s => String(s).replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d));
+function fieldHTML(x) {
+  let c;
+  if (["text", "tel", "email"].includes(x.t)) c = `<input class="in" type="${x.t}" name="${x.n}" maxlength="160" autocomplete="off" ${x.t !== "text" ? 'dir="ltr" style="text-align:start"' : ""} ${x.t === "tel" ? 'inputmode="tel"' : ""}>`;
+  else if (x.t === "ta") c = `<textarea class="in" name="${x.n}" rows="3" maxlength="2000"></textarea>`;
+  else c = `<div class="opts">${x.opts.map(o => `<label class="opt"><input type="${x.t === "radio" ? "radio" : "checkbox"}" name="${x.n}" value="${esc(o)}"><span>${esc(o)}</span></label>`).join("")}</div>`;
+  return `<div class="fld" data-f="${x.n}" ${x.show ? "hidden" : ""}><label class="lbl">${esc(x.l)}${x.r !== 0 ? "<em>*</em>" : ""}</label>${c}<div class="err" role="alert"></div></div>`;
+}
+function chk(x, v) {
+  const empty = Array.isArray(v) ? !v.length : !v;
+  if (empty) return x.r !== 0 ? (x.t === "radio" || x.t === "multi" ? "يرجى اختيار إجابة" : "هذا الحقل مطلوب") : "";
+  if (x.t === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return "صيغة البريد الإلكتروني غير صحيحة";
+  if (x.t === "tel" && !/^\+?[0-9 ()\-]{7,20}$/.test(v)) return "رقم الجوال غير صحيح (أرقام فقط، من 7 إلى 20 خانة)";
+  if (x.n === "full_name" && v.length < 3) return "الاسم قصير جدًا";
+  return "";
+}
+let formT0 = 0, lastReg = null;
+function pReg(key) {
+  const F = FORMS[key];
+  if (!F) return p404();
+  formT0 = Date.now();
+  const N = F.steps.length;
+  return shell(`<div class="wrap"><div class="card fcard ${F.color}">
+   <h1 class="h2">${L(F.title, F.te)}</h1><p class="lead" style="font-size:.98rem">${F.desc}</p>
+   <div class="prog"><i id="pg"></i></div><small id="pgt" style="color:var(--muted)"></small>
+   <form id="rf" novalidate autocomplete="off" style="margin-top:18px">
+    ${F.steps.map((s, i) => `<section class="step" data-step="${i}" ${i ? "hidden" : ""}><h3>${esc(s)}</h3>${F.fields.filter(x => x.s === i).map(fieldHTML).join("")}
+     ${i === N - 1 ? `<div class="fld" data-f="consent"><label class="consent"><input type="checkbox" name="consent"><span>أوافق على استخدام البيانات التي أدخلتها لأغراض تنظيم المبادرة والتواصل معي بخصوص المشاركة والأنشطة المرتبطة بها.</span></label><div class="err" role="alert"></div></div>` : ""}</section>`).join("")}
+    <div style="position:absolute;inset-inline-start:-9999px" aria-hidden="true"><input name="website" tabindex="-1" autocomplete="off"></div>
+    <div id="ferr"></div>
+    <div class="nav2"><button type="button" class="btn ghost" id="bk" hidden>السابق</button><button type="button" class="btn" id="nx" style="margin-inline-start:auto">التالي</button></div>
+   </form></div></div>`);
+}
+function bindReg(key) {
+  const F = FORMS[key], form = $("#rf"), N = F.steps.length;
+  let cur = 0, busy = false;
+  const val = x => {
+    const q = $$(`[name="${x.n}"]`, form);
+    if (x.t === "radio") return q.find(e => e.checked)?.value || "";
+    if (x.t === "multi") return q.filter(e => e.checked).map(e => e.value);
+    return x.t === "tel" ? norm(q[0].value.trim()) : q[0].value.trim();
+  };
+  const vis = x => !x.show || val(F.fields.find(y => y.n === x.show[0])) === x.show[1];
+  const refresh = () => F.fields.filter(x => x.show).forEach(x => { $(`[data-f="${x.n}"]`, form).hidden = !vis(x); });
+  const show = i => { cur = i; $$(".step", form).forEach(s => s.hidden = +s.dataset.step !== i); $("#pg").style.width = ((i + 1) / N * 100) + "%"; $("#pgt").textContent = `الخطوة ${i + 1} من ${N}`; $("#bk").hidden = i === 0; $("#nx").textContent = i === N - 1 ? "إرسال التسجيل" : "التالي"; window.scrollTo({ top: 0 }); };
+  const mark = (w, m) => { w.classList.toggle("bad", !!m); $(".err", w).textContent = m || ""; };
+  const checkStep = i => {
+    let ok = true, first = null;
+    F.fields.filter(x => x.s === i).forEach(x => { const w = $(`[data-f="${x.n}"]`, form); const m = vis(x) ? chk(x, val(x)) : ""; mark(w, m); if (m && ok) { ok = false; first = w; } });
+    if (i === N - 1) { const w = $('[data-f="consent"]', form), m = $("[name=consent]", form).checked ? "" : "الموافقة مطلوبة لإتمام التسجيل"; mark(w, m); if (m && ok) { ok = false; first = w; } }
+    if (first) first.scrollIntoView({ block: "center" });
+    return ok;
+  };
+  const collect = () => { const o = {}; F.fields.forEach(x => { if (!vis(x)) { o[x.n] = null; return; } const v = val(x); o[x.n] = (Array.isArray(v) ? v.length : v) ? v : null; }); return o; };
+  form.addEventListener("input", e => { refresh(); const w = e.target.closest(".fld"); if (w) mark(w, ""); });
+  form.addEventListener("change", e => { refresh(); const w = e.target.closest(".fld"); if (w) mark(w, ""); });
+  form.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.tagName !== "TEXTAREA") e.preventDefault(); });
+  $("#bk").onclick = () => show(cur - 1);
+  $("#nx").onclick = async () => {
+    if (busy) return;
+    if (cur < N - 1) { if (checkStep(cur)) show(cur + 1); return; }
+    for (let i = 0; i < N; i++) if (!checkStep(i)) { show(i); return; }
+    busy = true; const b = $("#nx"); b.disabled = true; b.innerHTML = '<span class="spin"></span> جارٍ الإرسال…'; $("#ferr").innerHTML = "";
+    try { const id = await submitReg(key, collect(), form.elements.website.value, Date.now() - formT0); lastReg = { id, key }; nav("/success"); }
+    catch (e) { $("#ferr").innerHTML = `<div class="alert e">${esc(e.message)}</div>`; b.disabled = false; b.textContent = "إرسال التسجيل"; busy = false; }
+  };
+  show(0);
+}
+async function submitReg(key, row, honey, ms) {
+  if (!sb) throw new Error(SUPABASE_URL ? "تعذّر تحميل مكتبة Supabase. تحقق من اتصال الإنترنت ثم أعد المحاولة." : "لم يتم ربط قاعدة البيانات بعد. أضف رابط Supabase والمفتاح العام في أعلى الملف.");
+  if (honey || ms < 3000) throw new Error("تعذّر إرسال النموذج. يرجى مراجعة البيانات والمحاولة مرة أخرى.");
+  const id = uuid();
+  const { error } = await sb.from(FORMS[key].table).insert({ id, ...row, consent: true });
+  if (error) {
+    if (error.code === "23505") throw new Error("هذا البريد الإلكتروني مسجل مسبقًا في هذا المسار.");
+    if (error.code === "42501" || error.code === "PGRST301") throw new Error("تعذّر الحفظ بسبب صلاحيات قاعدة البيانات. تأكد من تنفيذ ملف SQL كاملًا.");
+    if (error.code === "23514") throw new Error("بعض البيانات غير مقبولة. تحقق من الحقول وحاول مجددًا.");
+    throw new Error("تعذّر الاتصال بقاعدة البيانات. حاول مرة أخرى بعد قليل.");
+  }
+  return id;
+}
+function pSuccess() {
+  if (!lastReg) { setTimeout(() => nav("/"), 0); return ""; }
+  return shell(`<div class="wrap"><div class="card fcard okp"><div class="big">${ic("check")}</div>
+   <h1 class="h2">تم استلام تسجيلك بنجاح!</h1><p class="lead" style="margin:0 auto 14px">شكرًا لاهتمامك بالمشاركة في مبادرة التوأمة التربوية والتقنية. نتطلع إلى العمل معك.</p>
+   <p style="margin:0">رقم التسجيل</p><span class="code">${esc(lastReg.id.slice(0, 8).toUpperCase())}</span>
+   <p style="color:var(--muted)">احتفظ بهذا الرقم للرجوع إليه عند التواصل معنا.</p><a class="btn" href="#/">العودة إلى الرئيسية</a></div></div>`);
+}
+function p404() {
+  return shell(`<div class="wrap center"><h1 style="font-size:4rem;margin:0;color:var(--royal)">404</h1><p class="lead" style="margin:auto">${L("الصفحة التي تبحث عنها غير موجودة.", "The page you are looking for does not exist.")}</p><p><a class="btn" href="#/">${L("العودة إلى الرئيسية", "Back to home")}</a></p></div>`);
+}
+
+/* ============ 6) لوحة الإدارة ============ */
+let DATA = null;
+const R = { tab: "technical", q: "", status: "", spec: "", skill: "", sort: "desc", page: 1 };
+const PER = 15;
+function toast(m, t = "o") { const d = document.createElement("div"); d.className = "alert " + t; d.style.cssText = "position:fixed;inset-inline:16px;bottom:16px;max-width:460px;margin-inline:auto;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.2)"; d.textContent = m; document.body.appendChild(d); setTimeout(() => d.remove(), 4200); }
+async function fetchAll(table) {
+  const out = []; let from = 0;
+  for (;;) {
+    const { data, error } = await sb.from(table).select("*").order("created_at", { ascending: false }).range(from, from + 999);
+    if (error) throw error; out.push(...data); if (data.length < 1000) break; from += 1000;
+  }
+  return out;
+}
+async function loadAll(force) {
+  if (DATA && !force) return DATA;
+  const o = {}; await Promise.all(KEYS.map(async k => { o[k] = await fetchAll(FORMS[k].table); })); DATA = o; return o;
+}
+async function requireAdmin() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) return "login";
+  const { data, error } = await sb.from("admins").select("user_id").maybeSingle();
+  if (error || !data) { await sb.auth.signOut(); return "denied"; }
+  return session;
+}
+function ash(active, inner) {
+  const lk = (h, n, a, ar, en) => `<a href="${h}" style="${active === n ? "background:var(--soft)" : ""}">${ic(a)}${L(ar, en)}</a>`;
+  return `<div class="adm"><header class="hdr"><div class="wrap"><a class="brand" href="#/admin"><span class="logo">${ic("dash")}</span>${L("لوحة الإدارة", "Admin")}</a>
+   <button class="burger" data-act="burger" aria-label="menu">${ic("menu")}</button>
+   <nav class="nav" id="nav">${lk("#/admin", "dash", "dash", "الإحصائيات", "Overview")}${lk("#/admin/regs", "regs", "list", "التسجيلات", "Registrations")}${lk("#/admin/settings", "set", "gear", "الإعدادات", "Settings")}
+    <details class="menu"><summary class="btn sm">${ic("down")}${L("تصدير Excel", "Export Excel")}</summary><div class="pop">
+     ${KEYS.map(k => `<button data-act="export" data-k="${k}">${L("تصدير " + CAT[k][0], "Export " + CAT[k][1])}</button>`).join("")}
+     <button data-act="export" data-k="all">${L("تصدير جميع التسجيلات", "Export all registrations")}</button></div></details>
+    <button data-act="lang">${ic("globe")}${lang === "ar" ? "English" : "العربية"}</button><button data-act="logout">${ic("out")}${L("خروج", "Sign out")}</button></nav></div></header>
+   <main class="wrap" style="padding-block:24px" id="main">${inner}</main></div>`;
+}
+const setMain = h => { const m = $("#main"); if (m) m.innerHTML = h; };
+const loading = () => `<div class="center">${L("جارٍ التحميل…", "Loading…")}</div>`;
+const errBox = e => `<div class="alert e">${L("تعذّر جلب البيانات: ", "Could not load data: ")}${esc(e.message || e)}<br><small>${L("تأكد من تنفيذ ملف SQL وإضافة حسابك إلى جدول admins (راجع الإعدادات).", "Make sure the SQL was run and your account is in the admins table (see Settings).")}</small></div>`;
+function noDb() {
+  return shell(`<div class="wrap center"><div class="alert w" style="max-width:560px;margin:auto">${L("قاعدة البيانات غير مربوطة بعد. أضف SUPABASE_URL و SUPABASE_ANON_KEY في أعلى ملف HTML.", "Database not connected yet. Set SUPABASE_URL and SUPABASE_ANON_KEY at the top of the HTML file.")}</div></div>`);
+}
+function pLogin(qs) {
+  $("#app").innerHTML = shell(`<div class="wrap"><div class="card fcard" style="max-width:420px"><h1 class="h2">${L("تسجيل دخول الإدارة", "Admin sign in")}</h1>
+   ${qs && qs.includes("denied") ? `<div class="alert e">${L("هذا الحساب غير مصرح له بدخول لوحة الإدارة.", "This account is not authorized for the admin area.")}</div>` : ""}
+   <form id="lf" novalidate><div class="fld"><label class="lbl">${L("البريد الإلكتروني", "Email")}</label><input class="in" type="email" name="e" dir="ltr" autocomplete="username"></div>
+   <div class="fld"><label class="lbl">${L("كلمة المرور", "Password")}</label><input class="in" type="password" name="p" dir="ltr" autocomplete="current-password"></div><div id="le"></div>
+   <button class="btn" style="width:100%" id="lb">${L("دخول", "Sign in")}</button></form></div></div>`);
+  $("#lf").onsubmit = async ev => {
+    ev.preventDefault(); const b = $("#lb"), e = ev.target.e.value.trim(), p = ev.target.p.value;
+    if (!e || !p) { $("#le").innerHTML = `<div class="alert e">${L("أدخل البريد وكلمة المرور", "Enter email and password")}</div>`; return; }
+    b.disabled = true;
+    const { error } = await sb.auth.signInWithPassword({ email: e, password: p });
+    if (error) { $("#le").innerHTML = `<div class="alert e">${L("بيانات الدخول غير صحيحة أو تعذّر الاتصال.", "Invalid credentials or connection problem.")}</div>`; b.disabled = false; return; }
+    DATA = null; nav("/admin");
+  };
+}
+const countBy = (rows, fn) => { const m = {}; rows.forEach(r => [].concat(fn(r) || []).forEach(v => { v = String(v).trim(); if (v) m[v] = (m[v] || 0) + 1; })); return Object.entries(m).sort((a, b) => b[1] - a[1]); };
+const hbars = (e, n = 8) => { if (!e.length) return `<p class="lead">${L("لا توجد بيانات بعد", "No data yet")}</p>`; const mx = e[0][1]; return e.slice(0, n).map(([k, v]) => `<div class="hb"><span title="${esc(k)}">${esc(k)}</span><div class="bar"><i style="width:${v / mx * 100}%"></i></div><b>${v}</b></div>`).join(""); };
+function dayChart(rows) {
+  const days = [], now = new Date(); for (let i = 29; i >= 0; i--) { const d = new Date(now); d.setDate(d.getDate() - i); days.push(d.toISOString().slice(0, 10)); }
+  const m = {}; rows.forEach(r => { const k = new Date(r.created_at).toISOString().slice(0, 10); m[k] = (m[k] || 0) + 1; });
+  const v = days.map(d => m[d] || 0), mx = Math.max(1, ...v), W = 600, H = 190, bw = W / 30;
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%" role="img" aria-label="${L("التسجيلات خلال آخر 30 يومًا", "Registrations in the last 30 days")}">${v.map((n, i) => { const h = n / mx * (H - 50); return `<rect x="${i * bw + 3}" y="${H - 24 - h}" width="${bw - 6}" height="${Math.max(h, 2)}" rx="4" fill="${n ? "#2563EB" : "#D3E3F8"}"/>${n ? `<text x="${i * bw + bw / 2}" y="${H - 28 - h}" font-size="11" text-anchor="middle" fill="#183153">${n}</text>` : ""}${i % 6 === 0 ? `<text x="${i * bw + bw / 2}" y="${H - 6}" font-size="10" text-anchor="middle" fill="#64748B">${days[i].slice(5)}</text>` : ""}`; }).join("")}</svg>`;
+}
+async function pDash() {
+  const D = await loadAll(), all = KEYS.flatMap(k => D[k]), c = s => all.filter(r => r.status === s).length;
+  const st = [[L("إجمالي التسجيلات", "Total"), all.length], ...KEYS.map(k => [catL(k), D[k].length]), [L("التسجيلات الجديدة", "New"), c("new")], [L("المقبولون", "Accepted"), c("accepted")], [L("قيد المراجعة", "Reviewing"), c("reviewing")]];
+  let acc = 0; const tot = all.length || 1;
+  const grad = KEYS.map(k => { const a = acc / tot * 360; acc += D[k].length; return `${CAT[k][2]} ${a}deg ${acc / tot * 360}deg`; }).join(",");
+  setMain(`<h1 class="h2">${L("نظرة عامة", "Overview")}</h1>
+   <div class="stats">${st.map(s => `<div class="stat"><b>${s[1]}</b><span>${s[0]}</span></div>`).join("")}</div>
+   <div class="charts">
+    <div class="card"><h3>${L("توزيع المسجلين حسب الفئة", "Registrants by category")}</h3><div class="donut" style="background:${all.length ? `conic-gradient(${grad})` : "#EAF3FF"}"></div>
+      <div class="lg">${KEYS.map(k => `<span><i style="background:${CAT[k][2]}"></i>${catL(k)} (${D[k].length})`).join("</span>")}</span></div></div>
+    <div class="card"><h3>${L("توزيع المهارات التقنية", "Technical skills")}</h3>${hbars(countBy(D.technical, r => r.skills), 10)}</div>
+    <div class="card"><h3>${L("توزيع التخصصات التربوية", "Educational specializations")}</h3>${hbars(countBy(D.educational, r => r.specialization_field), 10)}</div>
+    <div class="card"><h3>${L("توزيع المواد التعليمية للمعلمين", "Teachers' subjects")}</h3>${hbars(countBy(D.teacher, r => r.subject), 10)}</div>
+    <div class="card" style="grid-column:1/-1"><h3>${L("التسجيلات خلال آخر 30 يومًا", "Registrations in the last 30 days")}</h3>${dayChart(all)}</div></div>`);
+}
+function renderRegs() {
+  const F = FORMS[R.tab], specs = [...new Set(DATA[R.tab].map(r => r[F.spec]).filter(Boolean))].sort();
+  const sk = F.fields.find(x => x.n === F.skillKey).opts;
+  setMain(`<h1 class="h2">${L("إدارة التسجيلات", "Registrations")}</h1>
+   <div class="tabs">${KEYS.map(k => `<button class="${k === R.tab ? "on" : ""}" data-tab="${k}">${catL(k)} (${DATA[k].length})</button>`).join("")}</div>
+   <div class="filters"><input class="in" id="fq" placeholder="${L("بحث بالاسم أو البريد أو الجوال", "Search name, email or phone")}" value="${esc(R.q)}">
+    <select class="in" id="fs"><option value="">${L("كل الحالات", "All statuses")}</option>${Object.keys(STATUS).map(s => `<option value="${s}" ${R.status === s ? "selected" : ""}>${stL(s)}</option>`).join("")}</select>
+    <select class="in" id="fp"><option value="">${L("كل التخصصات", "All majors")}</option>${specs.map(s => `<option ${R.spec === s ? "selected" : ""}>${esc(s)}</option>`).join("")}</select>
+    <select class="in" id="fk"><option value="">${L("كل المهارات", "All skills")}</option>${sk.map(s => `<option ${R.skill === s ? "selected" : ""}>${esc(s)}</option>`).join("")}</select>
+    <select class="in" id="fo"><option value="desc" ${R.sort === "desc" ? "selected" : ""}>${L("الأحدث أولًا", "Newest first")}</option><option value="asc" ${R.sort === "asc" ? "selected" : ""}>${L("الأقدم أولًا", "Oldest first")}</option></select></div>
+   <div id="tbl"></div>`);
+  drawTable();
+}
+function drawTable() {
+  const F = FORMS[R.tab], q = R.q.trim().toLowerCase();
+  let rows = DATA[R.tab].filter(r => (!q || [r.full_name, r.email, r.phone].some(v => String(v || "").toLowerCase().includes(q))) && (!R.status || r.status === R.status) && (!R.spec || r[F.spec] === R.spec) && (!R.skill || (r[F.skillKey] || []).includes(R.skill)));
+  rows.sort((a, b) => (R.sort === "asc" ? 1 : -1) * (new Date(a.created_at) - new Date(b.created_at)));
+  const pages = Math.max(1, Math.ceil(rows.length / PER)); R.page = Math.min(R.page, pages);
+  const cur = rows.slice((R.page - 1) * PER, R.page * PER);
+  $("#tbl").innerHTML = `<div class="tw"><table><thead><tr><th>${L("الاسم", "Name")}</th><th>${L("الجوال", "Phone")}</th><th>${L("البريد", "Email")}</th><th>${L("التخصص", "Major")}</th><th>${L("التاريخ", "Date")}</th><th>${L("الحالة", "Status")}</th><th></th></tr></thead><tbody>
+   ${cur.length ? cur.map(r => `<tr><td class="n">${esc(r.full_name)}</td><td class="ltr">${esc(r.phone)}</td><td class="ltr">${esc(r.email)}</td><td>${esc(r[F.spec])}</td><td>${fmtD(r.created_at)}</td><td><span class="badge st-${r.status}">${stL(r.status)}</span></td><td><a class="btn sm ghost" href="#/admin/reg/${R.tab}/${r.id}">${ic("eye")}${L("عرض", "View")}</a></td></tr>`).join("") : `<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--muted)">${L("لا توجد تسجيلات مطابقة", "No matching registrations")}</td></tr>`}</tbody></table></div>
+   <div class="pager"><button class="btn sm ghost" data-pg="-1" ${R.page <= 1 ? "disabled" : ""}>${L("السابق", "Prev")}</button><span>${L("صفحة", "Page")} ${R.page} / ${pages} — ${rows.length}</span><button class="btn sm ghost" data-pg="1" ${R.page >= pages ? "disabled" : ""}>${L("التالي", "Next")}</button></div>`;
+}
+async function pRegs() {
+  await loadAll(); renderRegs();
+  const m = $("#main");
+  m.onclick = e => {
+    const t = e.target.closest("[data-tab]"); if (t) { Object.assign(R, { tab: t.dataset.tab, q: "", status: "", spec: "", skill: "", page: 1 }); renderRegs(); return; }
+    const p = e.target.closest("[data-pg]"); if (p) { R.page += +p.dataset.pg; drawTable(); }
+  };
+  m.oninput = m.onchange = e => {
+    const map = { fq: "q", fs: "status", fp: "spec", fk: "skill", fo: "sort" };
+    if (map[e.target.id]) { R[map[e.target.id]] = e.target.value; R.page = 1; drawTable(); }
+  };
+}
+async function pDetail(k, id) {
+  const F = FORMS[k]; if (!F) { setMain(p404()); return; }
+  const { data: r, error } = await sb.from(F.table).select("*").eq("id", id).maybeSingle();
+  if (error) throw error;
+  if (!r) { setMain(`<div class="alert e">${L("التسجيل غير موجود.", "Registration not found.")}</div><a class="btn" href="#/admin/regs">${L("رجوع", "Back")}</a>`); return; }
+  const show = x => {
+    if (["text", "tel", "email", "ta"].includes(x.t)) return x.t === "ta" ? `<textarea class="in ed" data-n="${x.n}" rows="3" readonly>${esc(r[x.n])}</textarea>` : `<input class="in ed" data-n="${x.n}" value="${esc(r[x.n])}" readonly ${x.t !== "text" ? 'dir="ltr"' : ""}>`;
+    const v = Array.isArray(r[x.n]) ? r[x.n].join("، ") : r[x.n]; return `<div class="val">${esc(v) || "—"}</div>`;
+  };
+  setMain(`<a href="#/admin/regs" onclick="R.tab='${k}'">${L("← رجوع إلى التسجيلات", "← Back to registrations")}</a>
+   <div class="card" style="margin-top:12px"><h1 class="h2">${esc(r.full_name)}</h1><p class="lead">${catL(k)} — ${L("رقم التسجيل", "ID")}: <span class="code" style="font-size:.9rem">${esc(r.id.slice(0, 8).toUpperCase())}</span> — ${fmtD(r.created_at)}</p>
+   <div class="kv" style="margin-top:14px">${F.fields.map(x => `<div class="fld"><label class="lbl">${esc(x.l)}</label>${show(x)}</div>`).join("")}</div></div>
+   <div class="card" style="margin-top:16px"><h3>${L("إدارة التسجيل", "Manage")}</h3><div class="kv">
+    <div class="fld"><label class="lbl">${L("حالة التسجيل", "Status")}</label><select class="in" id="ds">${Object.keys(STATUS).map(s => `<option value="${s}" ${r.status === s ? "selected" : ""}>${stL(s)}</option>`).join("")}</select></div>
+    <div class="fld"><label class="lbl">${L("ملاحظات إدارية", "Admin notes")}</label><textarea class="in" id="dn" rows="3" maxlength="2000">${esc(r.notes)}</textarea></div></div>
+    <div class="row"><button class="btn" id="sv">${L("حفظ التغييرات", "Save changes")}</button><button class="btn alt" id="ed">${ic("pen")}${L("تعديل البيانات", "Edit data")}</button><button class="btn bad" id="dl">${ic("trash")}${L("حذف التسجيل", "Delete")}</button></div><div id="dm"></div></div>`);
+  $("#ed").onclick = () => { const on = $(".ed").readOnly; $$(".ed").forEach(e => e.readOnly = !on); $("#ed").lastChild.textContent = on ? L("إنهاء التعديل", "Stop editing") : L("تعديل البيانات", "Edit data"); };
+  $("#sv").onclick = async () => {
+    const upd = { status: $("#ds").value, notes: $("#dn").value.trim() || null };
+    for (const el of $$(".ed")) { const x = F.fields.find(y => y.n === el.dataset.n), v = el.value.trim(), m = chk({ ...x, r: x.show ? 0 : x.r }, v); if (m) { toast(`${x.l}: ${m}`, "e"); return; } upd[x.n] = v || null; }
+    $("#sv").disabled = true;
+    const { data, error } = await sb.from(F.table).update(upd).eq("id", id).select("id");
+    $("#sv").disabled = false;
+    if (error || !data?.length) { toast(L("تعذّر الحفظ. تحقق من صلاحيات الإدارة.", "Could not save. Check admin permissions."), "e"); return; }
+    DATA = null; toast(L("تم حفظ التغييرات", "Changes saved"));
+  };
+  $("#dl").onclick = async () => {
+    if (!confirm(L("هل أنت متأكد من حذف هذا التسجيل نهائيًا؟ لا يمكن التراجع.", "Delete this registration permanently? This cannot be undone."))) return;
+    const { data, error } = await sb.from(F.table).delete().eq("id", id).select("id");
+    if (error || !data?.length) { toast(L("تعذّر الحذف.", "Could not delete."), "e"); return; }
+    DATA = null; nav("/admin/regs");
+  };
+}
+async function pSettings() {
+  const { data: { session } } = await sb.auth.getSession();
+  setMain(`<h1 class="h2">${L("الإعدادات", "Settings")}</h1>
+   <div class="card"><h3>${L("الاتصال بقاعدة البيانات", "Database connection")}</h3><p>${L("الحساب الحالي", "Signed in as")}: <b class="ltr">${esc(session?.user?.email)}</b></p>
+    <button class="btn sm" id="tc">${L("اختبار الاتصال", "Test connection")}</button> <span id="tr"></span></div>
+   <div class="card" style="margin-top:16px"><h3>${L("ملف SQL لإنشاء الجداول والحماية (RLS)", "SQL for tables and RLS")}</h3>
+    <button class="btn sm ghost" data-act="copysql">${L("نسخ SQL", "Copy SQL")}</button><pre class="sql" id="sqlbox"></pre></div>
+   <div class="card" style="margin-top:16px"><h3>${L("إضافة مسؤول جديد", "Adding an admin")}</h3><p>${L("أنشئ المستخدم من Authentication > Users في Supabase، ثم نفّذ في SQL Editor:", "Create the user in Supabase Authentication > Users, then run in the SQL Editor:")}</p><pre class="sql">insert into public.admins (user_id) select id from auth.users where email = 'ADMIN_EMAIL';</pre></div>`);
+  $("#sqlbox").textContent = $("#sql").textContent.trim();
+  $("#tc").onclick = async () => {
+    const { error } = await sb.from("technical_registrations").select("id", { count: "exact", head: true });
+    $("#tr").innerHTML = error ? `<span class="badge st-rejected">${L("فشل: ", "Failed: ")}${esc(error.message)}</span>` : `<span class="badge st-accepted">${L("الاتصال يعمل", "Connection OK")}</span>`;
+  };
+}
+async function adminRoute(p, qs) {
+  const app = $("#app");
+  if (!sb) { app.innerHTML = noDb(); return; }
+  if (p[0] === "login") { pLogin(qs); return; }
+  const g = await requireAdmin();
+  if (g === "login") { nav("/admin/login"); return; }
+  if (g === "denied") { nav("/admin/login?denied=1"); return; }
+  const sec = p[0] === "regs" || p[0] === "reg" ? "regs" : p[0] === "settings" ? "set" : "dash";
+  app.innerHTML = ash(sec, loading());
+  try {
+    if (sec === "dash") await pDash();
+    else if (p[0] === "regs") await pRegs();
+    else if (p[0] === "reg") await pDetail(p[1], p[2]);
+    else await pSettings();
+  } catch (e) { setMain(errBox(e)); }
+}
+async function exportXlsx(which) {
+  if (!window.XLSX) { toast(L("مكتبة Excel لم تُحمَّل. تحقق من الاتصال بالإنترنت.", "Excel library failed to load."), "e"); return; }
+  try {
+    toast(L("جارٍ جلب البيانات من Supabase…", "Fetching data from Supabase…"), "w");
+    const wb = XLSX.utils.book_new();
+    for (const k of which === "all" ? KEYS : [which]) {
+      const F = FORMS[k], rows = await fetchAll(F.table);
+      const head = ["رقم التسجيل", "تاريخ التسجيل", "حالة التسجيل", ...F.fields.map(x => x.l), "ملاحظات الإدارة"];
+      const body = rows.map(r => [r.id, new Date(r.created_at).toLocaleString("en-GB"), STATUS[r.status]?.[0] || r.status, ...F.fields.map(x => Array.isArray(r[x.n]) ? r[x.n].join("، ") : (r[x.n] ?? "")), r.notes || ""]);
+      const ws = XLSX.utils.aoa_to_sheet([head, ...body]);
+      ws["!cols"] = head.map((h, i) => ({ wch: Math.min(50, Math.max(String(h).length, ...body.slice(0, 200).map(r => String(r[i]).length)) + 2) }));
+      ws["!autofilter"] = { ref: XLSX.utils.encode_range({ s: { r: 0, c: 0 }, e: { r: Math.max(body.length, 1), c: head.length - 1 } }) };
+      XLSX.utils.book_append_sheet(wb, ws, F.sheet);
+    }
+    wb.Workbook = { Views: [{ RTL: true }] };
+    const d = new Date().toISOString().slice(0, 10);
+    XLSX.writeFile(wb, which === "all" ? `Initiative_Registrations_${d}.xlsx` : `${FORMS[which].sheet.replace(/ /g, "_")}_Registrations_${d}.xlsx`);
+    toast(L("تم إنشاء ملف Excel", "Excel file created"));
+  } catch (e) { toast(L("تعذّر التصدير: ", "Export failed: ") + (e.message || e), "e"); }
+}
+
+/* ============ 7) التوجيه والأحداث ============ */
+let pendingGo = null, curPath = null;
+const getPath = () => { try { return location.hash.replace(/^#/, "") || "/"; } catch (e) { return "/"; } };
+function nav(p) {
+  if (curPath === p) { window.scrollTo(0, 0); return; }
+  curPath = p;
+  try { if (location.hash !== "#" + p) location.hash = "#" + p; } catch (e) {}
+  route();
+}
+function goSection(id) {
+  $("#nav")?.classList.remove("open");
+  if ((curPath ?? getPath()) !== "/") { pendingGo = id; nav("/"); return; }
+  if (id === "home") window.scrollTo(0, 0); else document.getElementById(id)?.scrollIntoView();
+}
+async function route() {
+  if (curPath === null) curPath = getPath();
+  const [path, qs] = curPath.replace(/^\//, "").split("?"), p = path.split("/").filter(Boolean), app = $("#app");
+  document.documentElement.lang = lang; document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  try {
+    if (p[0] === "admin") { await adminRoute(p.slice(1), qs); window.scrollTo(0, 0); return; }
+    if (!p.length) {
+      app.innerHTML = pHome();
+      const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .15 }) : null;
+      $$(".rv").forEach(el => io ? io.observe(el) : el.classList.add("in"));
+      if (pendingGo) { const id = pendingGo; pendingGo = null; setTimeout(() => (id === "home" ? window.scrollTo(0, 0) : document.getElementById(id)?.scrollIntoView()), 30); } else window.scrollTo(0, 0);
+    } else if (p[0] === "register") { app.innerHTML = pReg(p[1]); if (FORMS[p[1]]) bindReg(p[1]); window.scrollTo(0, 0); }
+    else if (p[0] === "success") { app.innerHTML = pSuccess(); window.scrollTo(0, 0); }
+    else app.innerHTML = p404();
+  } catch (e) { console.error(e); app.innerHTML = shell(`<div class="wrap center"><div class="alert e" style="max-width:520px;margin:auto">${L("حدث خطأ غير متوقع. حاول تحديث الصفحة.", "Unexpected error. Please refresh the page.")}</div></div>`); }
+}
+document.addEventListener("click", async e => {
+  const l = e.target.closest('a[href^="#/"]');
+  if (l) { e.preventDefault(); $("#nav")?.classList.remove("open"); nav(l.getAttribute("href").slice(1)); return; }
+  const g = e.target.closest("[data-go]"); if (g) { goSection(g.dataset.go); return; }
+  const a = e.target.closest("[data-act]"); if (!a) return;
+  const act = a.dataset.act;
+  if (act === "lang") { lang = lang === "ar" ? "en" : "ar"; try { localStorage.setItem("lang", lang); } catch (x) {} route(); }
+  else if (act === "burger") $("#nav").classList.toggle("open");
+  else if (act === "logout") { await sb.auth.signOut(); DATA = null; nav("/admin/login"); }
+  else if (act === "export") { a.closest("details")?.removeAttribute("open"); exportXlsx(a.dataset.k); }
+  else if (act === "copysql") { try { await navigator.clipboard.writeText($("#sql").textContent.trim()); toast(L("تم نسخ SQL", "SQL copied")); } catch (x) { toast(L("تعذّر النسخ. حدد النص يدويًا.", "Copy failed. Select the text manually."), "e"); } }
+});
+window.addEventListener("hashchange", () => { const p = getPath(); if (p !== curPath) { curPath = p; route(); } });
+route();
+</script>
+</body>
+</html>
