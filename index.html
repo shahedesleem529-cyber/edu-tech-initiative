@@ -224,6 +224,23 @@ create table if not exists public.teacher_registrations (
   participation_mode text, preferred_time text, extra_notes text
 );
 
+-- Matching fields added for the Smart Pairing workflow.
+-- Safe to run on an existing project. Existing registrations remain unchanged.
+alter table public.technical_registrations
+  add column if not exists target_age_group text[],
+  add column if not exists learning_interests text[],
+  add column if not exists preferred_project_types text[];
+
+alter table public.educational_registrations
+  add column if not exists target_age_group text[],
+  add column if not exists learning_interests text[],
+  add column if not exists preferred_project_types text[];
+
+alter table public.teacher_registrations
+  add column if not exists target_age_group text[],
+  add column if not exists learning_interests text[],
+  add column if not exists preferred_project_types text[];
+
 do $$
 declare t text;
 begin
@@ -305,22 +322,28 @@ const YN = ["نعم", "لا"], MODE = ["عن بُعد", "حضوريًا", "كل�
 const T3 = ["أقل من 3 ساعات أسبوعيًا", "3 إلى 5 ساعات أسبوعيًا", "أكثر من 5 ساعات أسبوعيًا", "حسب طبيعة المهام"];
 const f = (n, l, t, s, o = {}) => ({ n, l, t, s, ...o });
 const AI_SK = ["تصميم أنشطة تفاعلية", "إنتاج تطبيقات تعليمية", "إنتاج ألعاب تعليمية", "توظيف الذكاء الاصطناعي في التعليم", "تصميم المحتوى التعليمي الرقمي", "إنتاج الرسوم المتحركة التعليمية", "تعديل وتطوير التطبيقات التعليمية"];
+const AGE_GROUPS = ["رياض الأطفال", "6–9 سنوات", "10–12 سنة", "13–15 سنة", "16–18 سنة", "التعليم الجامعي", "جميع الفئات"];
+const LEARNING_INTERESTS = ["اللغة العربية", "اللغة الإنجليزية", "الرياضيات", "العلوم", "التكنولوجيا", "التاريخ والجغرافيا", "التربية الفنية", "التربية الخاصة", "المهارات الحياتية", "مواد وتخصصات أخرى"];
+const PROJECT_TYPES = ["لعبة تعليمية", "درس تفاعلي", "اختبار أو مسابقة", "قصة تفاعلية", "رسوم متحركة تعليمية", "نشاط أو محاكاة تفاعلية", "تطبيق تعليمي"];
 const BASE = [f("full_name", "الاسم الكامل", "text", 0), f("phone", "رقم الجوال", "tel", 0), f("email", "البريد الإلكتروني", "email", 0)];
 const FORMS = {
   technical: {
     table: "technical_registrations", sheet: "Technical Team", spec: "major", skillKey: "skills", color: "",
     title: "الانضمام إلى الفريق التقني", te: "Join the Technical Team",
-    desc: "يهدف هذا النموذج إلى حصر المهارات والخبرات التقنية لدى أعضاء النادي والمهتمين بالمشاركة في المبادرة، للمساهمة في نقل المعرفة ومساعدة المعلمين والتربويين على إنتاج تطبيقات وأنشطة تعليمية تفاعلية.",
+    desc: "يهدف هذا النموذج إلى التعرف على مهاراتك التقنية واهتماماتك، للمشاركة في فرق تساعد المعلمين وطلاب التخصصات التربوية على تحويل الدروس والأهداف التعليمية إلى ألعاب وأنشطة تفاعلية. لا يشترط أن تكون عضوًا في النادي.",
     steps: ["البيانات الأساسية", "المهارات والخبرة", "المشاركة"],
     fields: [...BASE,
       f("university", "الجامعة", "text", 0), f("major", "التخصص الجامعي", "text", 0),
       f("study_year", "السنة الدراسية", "radio", 0, { opts: ["السنة الأولى", "السنة الثانية", "السنة الثالثة", "السنة الرابعة", "خريج", "أخرى"] }),
+      f("target_age_group", "الفئات العمرية التي تفضّل تصميم محتوى لها", "multi", 1, { opts: AGE_GROUPS }),
+      f("learning_interests", "المواد أو المجالات التعليمية التي تهمك", "multi", 1, { opts: LEARNING_INTERESTS }),
       f("is_club_member", "هل أنت عضو في النادي التكنولوجي؟", "radio", 0, { opts: YN }),
       f("skills", "المجالات التي تمتلك فيها مهارات", "multi", 1, { opts: ["البرمجة وتطوير التطبيقات", "تطوير مواقع الويب", "تصميم UI/UX", "التصميم الجرافيكي", "المونتاج وإنتاج الفيديو", "الملتيميديا والرسوم المتحركة", "Adobe Animate", "الذكاء الاصطناعي وأدوات AI", "إعداد المحتوى التعليمي", "قواعد البيانات", "أخرى"] }),
       f("tools", "البرامج والأدوات التي تجيد استخدامها", "ta", 1),
       f("experience_level", "مستوى خبرتك", "radio", 1, { opts: LVL }),
       f("has_projects", "هل سبق لك تنفيذ مشاريع تقنية أو تعليمية؟", "radio", 1, { opts: YN }),
       f("projects_examples", "اذكر أمثلة عن مشاريعك", "ta", 1, { r: 0, show: ["has_projects", "نعم"] }),
+      f("preferred_project_types", "أنواع المشاريع التي تفضّل العمل عليها", "multi", 2, { opts: PROJECT_TYPES }),
       f("preferred_roles", "الدور الذي ترغب في المشاركة فيه", "multi", 2, { opts: ["التدريب ونقل المعرفة", "البرمجة والتطوير", "التصميم والإنتاج", "إعداد المحتوى", "البحث والتجربة", "المساعدة التقنية"] }),
       f("willing_to_help", "هل لديك استعداد لمساعدة المعلمين على تعلم الأدوات الرقمية؟", "radio", 2, { opts: ["نعم", "أحتاج إلى تطوير مهاراتي أولًا"] }),
       f("weekly_time", "ما الوقت المتاح لديك للمشاركة؟", "radio", 2, { opts: T3 }),
@@ -330,7 +353,7 @@ const FORMS = {
   educational: {
     table: "educational_registrations", sheet: "Educational Team", spec: "edu_major", skillKey: "skills_wanted", color: "t-teal",
     title: "الانضمام إلى المسار التربوي", te: "Join the Educational Path",
-    desc: "ندعو طلبة وخريجي التخصصات التربوية للمشاركة في مبادرة تجمع التربية والتكنولوجيا، بهدف اكتساب مهارات إنتاج التطبيقات والأنشطة التعليمية التفاعلية، والعمل مع فرق تقنية متعددة التخصصات.",
+    desc: "ندعو طلبة وخريجي التخصصات التربوية للمشاركة بوصفهم من الفئات الأساسية المستفيدة من المبادرة، لتعلم تحويل المواد والدروس والأهداف التعليمية في مختلف التخصصات إلى ألعاب وأنشطة تفاعلية، بالتعاون مع فرق تقنية.",
     steps: ["البيانات الأساسية", "الخبرة الرقمية", "الاهتمامات والمشاركة"],
     fields: [...BASE,
       f("university", "الجامعة", "text", 0), f("edu_major", "التخصص التربوي", "text", 0),
@@ -339,10 +362,13 @@ const FORMS = {
       f("graduation_year", "سنة التخرج", "text", 0, { r: 0, show: ["academic_status", "خريج"] }),
       f("specialization_field", "مجال التخصص", "radio", 0, { opts: ["تعليم أساسي", "معلم صف", "تعليم لغة عربية", "تعليم لغة إنجليزية", "تعليم رياضيات", "تعليم علوم", "تكنولوجيا تعليم", "تربية خاصة", "أساليب تدريس", "أخرى"] }),
       f("subject_interest", "ما المادة أو المجال التعليمي الذي تهتم به؟", "text", 0),
+      f("target_age_group", "الفئة العمرية أو المرحلة التي ترغب في إعداد محتوى لها", "multi", 1, { opts: AGE_GROUPS }),
+      f("learning_interests", "المواد أو المجالات التي ترغب في تطوير محتوى تفاعلي لها", "multi", 1, { opts: LEARNING_INTERESTS }),
       f("used_digital_tools", "هل سبق لك استخدام أدوات رقمية في إعداد أنشطة تعليمية؟", "radio", 1, { opts: YN }),
       f("tools_used", "ما الأدوات التي استخدمتها؟", "multi", 1, { opts: ["Canva", "PowerPoint", "Adobe Animate", "أدوات الذكاء الاصطناعي", "أدوات تصميم أخرى", "لا أمتلك خبرة سابقة"] }),
       f("digital_level", "مستوى خبرتك الرقمية", "radio", 1, { opts: LVL }),
       f("skills_wanted", "ما المهارات التي ترغب في اكتسابها؟", "multi", 2, { opts: AI_SK }),
+      f("preferred_project_types", "ما نوع المحتوى الذي تود إنتاجه؟", "multi", 2, { opts: PROJECT_TYPES }),
       f("idea", "هل لديك فكرة تعليمية ترغب في تحويلها إلى تطبيق أو نشاط تفاعلي؟", "ta", 2),
       f("team_willingness", "هل لديك استعداد للعمل ضمن فريق يجمع التخصصات التربوية والتقنية؟", "radio", 2, { opts: ["نعم", "أرغب في معرفة المزيد أولًا"] }),
       f("participation_mode", "طريقة المشاركة المفضلة", "radio", 2, { opts: MODE }),
@@ -352,7 +378,7 @@ const FORMS = {
   teacher: {
     table: "teacher_registrations", sheet: "Teachers", spec: "subject", skillKey: "skills_wanted", color: "t-violet",
     title: "الانضمام إلى مسار تمكين المعلمين رقميًا", te: "Join the Teachers' Digital Empowerment Path",
-    desc: "تهدف المبادرة إلى تمكين المعلمين والمعلمات من اكتساب المهارات اللازمة لتحويل أفكارهم التعليمية إلى تطبيقات وأنشطة تفاعلية بأنفسهم، باستخدام الأدوات الرقمية وتقنيات الذكاء الاصطناعي، بما يتيح لهم تطوير أعمالهم وتحديثها باستمرار.",
+    desc: "تهدف المبادرة إلى تمكين المعلمين والمعلمات من تحويل الدروس والأهداف التعليمية في مختلف المواد والتخصصات إلى ألعاب وأنشطة تفاعلية، بالتعاون مع التقنيين والتربويين، مع توفير فرص للتعلم والتدريب العملي مهما كان مستوى الخبرة الرقمية.",
     steps: ["البيانات الأساسية", "الخبرة الرقمية", "الاحتياجات والمشاركة"],
     fields: [...BASE,
       f("subject", "التخصص أو المادة التي تدرّسها", "text", 0),
@@ -360,10 +386,13 @@ const FORMS = {
       f("years_experience", "سنوات الخبرة في التدريس", "radio", 0, { opts: ["أقل من سنة", "من سنة إلى 3 سنوات", "من 4 إلى 7 سنوات", "أكثر من 7 سنوات"] }),
       f("workplace", "جهة العمل أو المدرسة", "text", 0, { r: 0 }),
       f("region", "المحافظة أو المنطقة", "text", 0),
+      f("target_age_group", "الفئات العمرية التي تدرّسها أو ترغب في استهدافها", "multi", 0, { opts: AGE_GROUPS }),
+      f("learning_interests", "المواد أو المجالات التي ترغب في تطويرها تفاعليًا", "multi", 1, { opts: LEARNING_INTERESTS }),
       f("designed_digital", "هل سبق لك تصميم أنشطة أو مواد تعليمية رقمية؟", "radio", 1, { opts: YN }),
       f("tools_used", "ما الأدوات التي تستخدمها حاليًا؟", "multi", 1, { opts: ["PowerPoint", "Canva", "أدوات الذكاء الاصطناعي", "برامج التصميم والملتيميديا", "Adobe Animate", "أدوات أخرى", "لا أستخدم أدوات رقمية حاليًا"] }),
       f("produced_app", "هل سبق لك إنتاج تطبيق تعليمي تفاعلي؟", "radio", 1, { opts: YN }),
       f("skills_wanted", "ما المهارات التي ترغب في تعلمها؟", "multi", 1, { opts: ["تصميم تطبيقات تعليمية", "إنتاج ألعاب تعليمية", "تصميم أنشطة تفاعلية", "استخدام الذكاء الاصطناعي في التعليم", "إنتاج رسوم متحركة تعليمية", "تعديل وتطوير التطبيقات التعليمية", "إنتاج محتوى تعليمي رقمي"] }),
+      f("preferred_project_types", "ما نوع المحتوى الذي ترغب في إنتاجه؟", "multi", 2, { opts: PROJECT_TYPES }),
       f("needs", "ما أبرز الصعوبات أو الاحتياجات التعليمية التي تتمنى إيجاد حلول رقمية لها؟", "ta", 2),
       f("idea", "هل لديك فكرة تعليمية ترغب في تحويلها إلى تطبيق أو نشاط تفاعلي؟", "ta", 2),
       f("wants_self_learning", "هل ترغب في تعلم إنتاج التطبيقات بنفسك دون الاعتماد الدائم على مبرمج؟", "radio", 2, { opts: ["نعم", "أرغب في التعرف على الأدوات أولًا"] }),
@@ -380,7 +409,7 @@ const CAT = { technical: ["الفريق التقني", "Technical team", "#2563E
 const catL = k => L(CAT[k][0], CAT[k][1]);
 
 /* ============ 4) الصفحات العامة ============ */
-const NAV = [["home", "الرئيسية", "Home"], ["about", "عن المبادرة", "About"], ["paths", "مسارات المشاركة", "Paths"], ["goals", "أهداف المبادرة", "Goals"]];
+const NAV = [["home", "الرئيسية", "Home"], ["about", "عن المبادرة", "About"], ["paths", "مسارات المشاركة", "Paths"], ["smart-pairing", "التوأمة الذكية", "Smart Pairing"], ["workspace", "مساحة العمل", "Workspace"], ["goals", "أهداف المبادرة", "Goals"]];
 function header() {
   return `<header class="hdr"><div class="wrap">
   <a class="brand" href="#/"><span class="logo">${ic("layers")}</span><span>${L("التوأمة التربوية والتقنية", "Educational & Tech Integration")}</span></a>
@@ -417,25 +446,52 @@ function heroArt() {
 }
 const OBJ = [["users", "تمكين المعلمين رقميًا", "Digitally empowering teachers"], ["code", "تطوير مهارات إنتاج التطبيقات التعليمية", "Building skills to produce educational apps"], ["spark", "دمج الذكاء الاصطناعي في التعليم", "Integrating AI into education"], ["refresh", "تعزيز التعاون بين التربية والتكنولوجيا", "Strengthening education–technology collaboration"], ["layers", "بناء فرق متعددة التخصصات", "Building multidisciplinary teams"], ["book", "تبادل الخبرات والمعرفة", "Sharing experience and knowledge"], ["target", "تطوير حلول تعليمية قابلة للتحديث", "Developing updatable learning solutions"], ["cap", "الاستثمار في قدرات المعلمين والتربويين", "Investing in educators' capabilities"]];
 const PATHS = [
-  ["technical", "code", "المسار الأول: الفريق التقني", "Path 1: Technical Team", "للطلبة وأعضاء النادي ممن يمتلكون مهارات في البرمجة والتصميم والملتيميديا والذكاء الاصطناعي.", "For students and club members skilled in programming, design, multimedia and AI."],
-  ["educational", "cap", "المسار الثاني: التخصصات التربوية", "Path 2: Educational Majors", "لطلبة وخريجي التخصصات التربوية الراغبين في تطوير مهاراتهم الرقمية والمشاركة في إنتاج محتوى تعليمي تفاعلي.", "For education students and graduates who want to build digital skills and help produce interactive content."],
-  ["teacher", "pen", "المسار الثالث: المعلمون والمعلمات", "Path 3: Teachers", "للمعلمين والمعلمات الراغبين في تعلم أدوات إنتاج التطبيقات والأنشطة التعليمية التفاعلية وتحويل أفكارهم إلى منتجات رقمية.", "For teachers who want to learn tools for producing interactive apps and activities and turn their ideas into digital products."]];
-const HOW = [["التسجيل وتحديد المهارات والاهتمامات.", "Register and state your skills and interests."], ["حصر المشاركين وتصنيف خبراتهم.", "Participants are listed and their experience categorized."], ["تشكيل فرق مشتركة.", "Mixed teams are formed."], ["تبادل المعرفة والتدريب العملي.", "Knowledge exchange and hands-on training."], ["تطوير تطبيقات وأنشطة تعليمية.", "Educational apps and activities are developed."], ["تجربة المنتجات وتطويرها.", "Products are tested and improved."]];
+  ["technical", "code", "المسار الأول: الفريق التقني", "Path 1: Technical Team", "لطلاب الـIT والتقنيين والمهتمين بالبرمجة والتصميم والملتيميديا والذكاء الاصطناعي، للمساهمة في التدريب والتنفيذ. ويمكن للطلاب من تخصصات أخرى الانضمام والتعلم عبر الورش.", "For IT students, technologists and people interested in programming, design, multimedia and AI. Students from other majors can also join and learn through workshops."],
+  ["educational", "cap", "المسار الثاني: التخصصات التربوية", "Path 2: Educational Majors", "لطلاب وخريجي التخصصات التربوية، وهم من الفئات الأساسية المستفيدة، لتعلم توظيف التقنية في شرح المواد والدروس بمختلف التخصصات.", "For education students and graduates, a primary beneficiary group, to learn how to use technology to teach subjects across disciplines."],
+  ["teacher", "pen", "المسار الثالث: المعلمون والمعلمات", "Path 3: Teachers", "للمعلمين والمعلمات، وهم الفئة الأساسية المستفيدة، لمساعدتهم على تحويل أهداف الدروس إلى ألعاب وأنشطة تفاعلية، دون اشتراط خبرة مسبقة كبيرة في البرمجة أو التصميم.", "For teachers, a primary beneficiary group, to turn lesson goals into interactive games and activities without requiring extensive prior coding or design experience."]];
+const HOW = [["التسجيل وتحديد التخصص والمهارات والاهتمامات والفئة العمرية المستهدفة.", "Register and state your major, skills, interests and target age group."], ["ترشيح شركاء مناسبين وفق المهارات والاحتياجات التعليمية.", "Suggest suitable partners based on skills and educational needs."], ["تشكيل فرق تضم المعرفة التربوية والمهارات التقنية.", "Form teams combining pedagogical knowledge and technical skills."], ["التدريب والتعلّم المتبادل، دون اشتراط خبرة كبيرة مسبقة.", "Learn together through practical training, without requiring extensive prior experience."], ["تصميم لعبة أو درس أو اختبار أو نشاط تفاعلي.", "Design a game, lesson, quiz or interactive activity."], ["تجربة المنتج مع الفئة المستهدفة وتطويره ومشاركته.", "Test the product with its target learners, improve it and share it."]];
 function pHome() {
   return shell(`
   <section class="hero" id="home"><div class="wrap"><div>
     <h1>${L("نحو تعليم أكثر تفاعلًا، نصنعه بأيدينا", "Toward more interactive education, built with our own hands")}</h1>
-    <p>${L("مساحة تجمع التربية والتكنولوجيا لتمكين المعلمين والتربويين من تحويل أفكارهم التعليمية إلى تجارب رقمية تفاعلية.", "A space that brings education and technology together so teachers and educators can turn their ideas into interactive digital experiences.")}</p>
+    <p>${L("مبادرة تجمع التقنيين وطلاب الـIT مع طلاب التخصصات التربوية والمعلمين والمعلمات، لتحويل الدروس والأهداف التعليمية في مختلف المواد إلى ألعاب وتجارب تفاعلية.", "A space that brings education and technology together so teachers and educators can turn their ideas into interactive digital experiences.")}</p>
     <div class="row"><button class="btn" data-go="paths">${L("انضم إلى المبادرة", "Join the initiative")}</button><button class="btn alt" data-go="about">${L("اكتشف فكرة المبادرة", "Discover the idea")}</button></div>
   </div>${heroArt()}</div></section>
   <section class="s w" id="about"><div class="wrap"><h2 class="h2">${L("ما هي المبادرة؟", "What is the initiative?")}</h2>
-   <p class="lead">${L("مبادرة تهدف إلى بناء تعاون حقيقي بين التخصصات التربوية والتقنية، من خلال تشكيل فرق عمل مشتركة تعمل على نقل المعرفة وتبادل الخبرات وتطوير المهارات الرقمية، بما يمكّن المعلمين والمعلمات من إنتاج تطبيقاتهم وأنشطتهم التعليمية التفاعلية بأنفسهم.", "An initiative to build real collaboration between education and technology majors through joint teams that transfer knowledge, exchange experience and develop digital skills, so teachers can produce their own interactive educational apps and activities.")}</p></div></section>
-  <section class="s"><div class="wrap"><div class="band"><h2 class="h2">${L("رؤيتنا", "Our vision")}</h2><p class="vision">${L("معلم يمتلك أدوات المستقبل، وقادر على تحويل أفكاره التعليمية إلى حلول رقمية تفاعلية قابلة للتطوير والتحديث.", "A teacher who owns the tools of the future and can turn educational ideas into interactive digital solutions that can be developed and updated.")}</p></div></div></section>
+   <p class="lead">${L("مبادرة تقوم على التوأمة بين المجالين التقني والتربوي. يساهم التقنيون وطلاب الـIT في تعليم ومساندة طلاب التخصصات التربوية والمعلمين والمعلمات لاستخدام أدوات البرمجة والتصميم في إنتاج ألعاب ودروس واختبارات وأنشطة تفاعلية. ويمكن تطبيق الفكرة في اللغة العربية والرياضيات والعلوم والتاريخ وسائر التخصصات، وليس في المواد التقنية أو العلمية فقط. ولا يُشترط امتلاك خبرة كبيرة مسبقة، فالتعلّم والتدريب جزء من المبادرة.", "An initiative to build real collaboration between education and technology majors through joint teams that transfer knowledge, exchange experience and develop digital skills, so teachers can produce their own interactive educational apps and activities.")}</p></div></section>
+  <section class="s"><div class="wrap"><div class="band"><h2 class="h2">${L("رؤيتنا", "Our vision")}</h2><p class="vision">${L("كل معلم وتربوي قادر على تقديم مادته وأهدافه التعليمية بطريقة تفاعلية تساعد الطالب على الفهم والمشاركة، بدعم من المعرفة التقنية والعمل المشترك.", "A teacher who owns the tools of the future and can turn educational ideas into interactive digital solutions that can be developed and updated.")}</p></div></div></section>
   <section class="s w" id="goals"><div class="wrap"><h2 class="h2">${L("أهداف المبادرة", "Initiative goals")}</h2><div class="grid g4">
    ${OBJ.map((o, i) => `<div class="card rv ${["", "t-teal", "t-violet"][i % 3]}"><div class="ico">${ic(o[0])}</div><h3>${L(o[1], o[2])}</h3></div>`).join("")}</div></div></section>
   <section class="s" id="paths"><div class="wrap"><h2 class="h2">${L("مسارات المشاركة", "Participation paths")}</h2><div class="grid g2" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
    ${PATHS.map(p => `<div class="card path rv ${FORMS[p[0]].color}"><div class="ico">${ic(p[1])}</div><h3>${L(p[2], p[3])}</h3><p>${L(p[4], p[5])}</p><a class="btn" href="#/register/${p[0]}">${L("سجل الآن", "Register now")}</a></div>`).join("")}</div></div></section>
-  <section class="s w"><div class="wrap"><h2 class="h2">${L("كيف نتعاون؟", "How it works")}</h2><ol class="steps" style="padding:0">${HOW.map(h => `<li>${L(h[0], h[1])}</li>`).join("")}</ol></div></section>
+   <section class="s w"><div class="wrap"><h2 class="h2">${L("كيف نتعاون؟", "How it works")}</h2><ol class="steps" style="padding:0">${HOW.map(h => `<li>${L(h[0], h[1])}</li>`).join("")}</ol></div></section>
+   <section class="s" id="smart-pairing"><div class="wrap"><h2 class="h2">${L("كيف نكوّن فرقًا مناسبة؟", "How do we build suitable teams?")}</h2>
+    <p class="lead">${L("التوأمة الذكية (Smart Pairing) هي آلية مقترحة لترشيح المشاركين لبعضهم بناءً على مجموعة من البيانات التي يضيفونها عند التسجيل، مع بقاء تشكيل الفرق ومراجعة الترشيحات بالتنسيق مع فريق المبادرة.", "Smart Pairing is a proposed way to recommend suitable participants based on information they provide during registration. The initiative team will review recommendations and coordinate team formation.")}</p>
+    <div class="grid g4">
+     <div class="card rv"><div class="ico">${ic("layers")}</div><h3>${L("التخصص والاهتمامات", "Major and interests")}</h3><p>${L("المادة أو المجال التعليمي الذي يرغب المشارك في العمل عليه.", "The subject or educational area a participant wants to work on.")}</p></div>
+     <div class="card rv t-teal"><div class="ico">${ic("code")}</div><h3>${L("المهارات والخبرات", "Skills and experience")}</h3><p>${L("ما يتقنه المشارك من أدوات ومهارات، وما يرغب في تعلمه.", "Tools and skills participants already know and want to learn.")}</p></div>
+     <div class="card rv t-violet"><div class="ico">${ic("users")}</div><h3>${L("الفئة العمرية", "Target age group")}</h3><p>${L("المرحلة أو الفئة العمرية التي سيُصمم لها المحتوى.", "The age group or school stage the content is designed for.")}</p></div>
+     <div class="card rv"><div class="ico">${ic("spark")}</div><h3>${L("نوع المشروع", "Project type")}</h3><p>${L("لعبة تعليمية أو درس تفاعلي أو اختبار أو قصة أو نشاط.", "An educational game, interactive lesson, quiz, story or activity.")}</p></div>
+    </div>
+    <div class="card" style="margin-top:18px"><h3>${L("مثال عملي", "Example")}</h3><p>${L("طالب تكنولوجيا معلومات لديه معرفة بـ JavaScript، ومعلمة رياضيات، يمكن ترشيحهما للعمل معًا على لعبة تفاعلية لتعليم جدول الضرب. المعلمة تحدد الهدف وطريقة الشرح المناسبة، والطالب التقني يساعد في تنفيذ الفكرة.", "An IT student familiar with JavaScript and a mathematics teacher can be matched to create an interactive multiplication game. The teacher defines the learning goal and teaching approach, while the technical student helps build it.")}</p></div>
+   </div></section>
+   <section class="s w" id="workspace"><div class="wrap"><h2 class="h2">${L("مساحة عمل مشتركة لكل فريق", "A shared workspace for every team")}</h2>
+    <p class="lead">${L("من المقترحات التطويرية أن يحصل كل فريق على مساحة خاصة لمتابعة مشروعه من الفكرة حتى المنتج النهائي.", "A proposed feature is to give every team a dedicated space to manage its project from idea to final product.")}</p>
+    <div class="grid g4">
+     <div class="card"><h3>${L("وصف المشروع", "Project brief")}</h3><p>${L("تحديد الفكرة والهدف التعليمي والمادة والمرحلة المستهدفة.", "Define the idea, learning objective, subject and target stage.")}</p></div>
+     <div class="card"><h3>${L("توزيع المهام", "Task assignment")}</h3><p>${L("تحديد مسؤوليات أعضاء الفريق ومتابعة مراحل الإنجاز.", "Assign responsibilities and track progress.")}</p></div>
+     <div class="card"><h3>${L("الملفات والملاحظات", "Files and feedback")}</h3><p>${L("رفع التصاميم والملفات وتبادل الملاحظات والتعديلات.", "Upload designs and files, share feedback and revisions.")}</p></div>
+     <div class="card"><h3>${L("عرض المنتج النهائي", "Final showcase")}</h3><p>${L("توثيق المشروع وعرضه ليستفيد منه المعلمون والطلاب.", "Document and showcase the project for teachers and students.")}</p></div>
+    </div>
+   </div></section>
+   <section class="s" id="ai-assistant"><div class="wrap"><div class="showcase"><div><h2 class="h2">${L("مساعد ذكي لدعم الأفكار التعليمية", "An AI assistant for educational ideas")}</h2>
+    <p class="lead">${L("من الأفكار المستقبلية إضافة مساعد ذكاء اصطناعي يقترح ألعابًا وأنشطة، ويساعد الفريق على تحويل هدف الدرس إلى خطوات تفاعلية، مع بقاء القرار التربوي للمعلم.", "A future feature is an AI assistant that suggests games and activities and helps teams turn lesson objectives into interactive steps, while the teacher remains responsible for pedagogical decisions.")}</p></div><div class="ico">${ic("spark")}</div></div></div></section>
+   <section class="s w"><div class="wrap"><h2 class="h2">${L("معايير نراعيها في المشاريع", "Principles for our projects")}</h2><div class="grid g2">
+    <div class="card"><h3>${L("ارتباط بالمناهج والاحتياج", "Curriculum and real needs")}</h3><p>${L("نسعى إلى ربط المشاريع بالمنهاج الفلسطيني واحتياجات المعلمين والطلاب، لتكون قابلة للاستخدام داخل العملية التعليمية.", "We aim to connect projects to the Palestinian curriculum and the needs of teachers and students, so they are useful in learning.")}</p></div>
+    <div class="card"><h3>${L("سهولة الوصول", "Accessibility")}</h3><p>${L("نراعي أن تكون المشاريع خفيفة وتعمل على الهواتف ومع اتصال إنترنت ضعيف، مع إتاحة تنزيل المحتوى والعمل دون إنترنت كلما سمحت طبيعة المشروع.", "We aim for lightweight projects that work on phones and weak internet, with downloadable and offline use whenever the project allows.")}</p></div>
+    <div class="card"><h3>${L("التعلم دون خبرة مسبقة", "Learning without prior experience")}</h3><p>${L("تُتاح ورشات تعريفية وتدريبية للمعلمين والتربويين والطلاب المهتمين بمجال IT، لتعلم الأدوات وخطوات التنفيذ.", "Introductory and practical workshops help teachers, educators and students interested in IT learn the tools and process.")}</p></div>
+    <div class="card"><h3>${L("نتائج قابلة للتجربة", "Testable outcomes")}</h3><p>${L("يركز كل فريق على منتج واضح، ثم يجربه مع الفئة المستهدفة ويطوره بناءً على الملاحظات.", "Each team focuses on a clear product, tests it with its target audience and improves it using feedback.")}</p></div>
+   </div></div></section>
   <section class="s w" id="showcase"><div class="wrap"><div class="showcase"><div><h2 class="h2">${L("نماذج من أعمال المعلمين", "Examples of teachers' work")}</h2><p class="lead">${L("اطّلع على نماذج من الأنشطة والتطبيقات التعليمية التفاعلية التي أنتجها المعلمون.", "Browse examples of interactive learning activities and apps produced by teachers.")}</p></div><a class="btn" href="https://edumedia.ps" target="_blank" rel="noopener noreferrer">${ic("ext")}${L("زيارة المنصة", "Visit the platform")}</a></div></div></section>
   <section class="s"><div class="wrap"><div class="band"><h2 class="h2">${L("معًا نحو تجربة تعليمية أكثر ابتكارًا", "Together toward a more innovative learning experience")}</h2>
    <p class="lead" style="margin:auto">${L("نؤمن بأن تطوير التعليم يحتاج إلى تكامل الخبرات، وأن الجمع بين المعرفة التربوية والمهارات التقنية يفتح آفاقًا جديدة لإنتاج حلول تعليمية مبتكرة.", "We believe improving education takes complementary expertise, and that combining pedagogical knowledge with technical skills opens new ways to build innovative learning solutions.")}</p></div></div></section>`);
