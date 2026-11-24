@@ -140,6 +140,17 @@ td.n{white-space:normal;min-width:150px}.ltr{direction:ltr;unicode-bidi:plaintex
 .kv .fld{margin:0}.val{padding:6px 0;font-weight:600;word-break:break-word}
 pre.sql{direction:ltr;text-align:left;background:#F8FBFF;border:1px solid var(--line);border-radius:14px;padding:14px;max-height:340px;overflow:auto;font-size:.8rem;line-height:1.6}
 .center{text-align:center;padding:60px 0}
+
+/* Partnership identity */
+.partnership{background:#fff;padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.partnership .inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:26px;text-align:center}
+.partnership .heading{width:100%;font-weight:800;color:var(--ink);font-size:1.15rem;margin-bottom:2px}
+.partnership .logos{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;width:100%}
+.partnership .partner-logo{height:112px;width:min(250px,42vw);object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:16px;padding:9px 14px}
+.partnership .plus{font-size:1.6rem;font-weight:800;color:var(--teal)}
+.partnership .caption{width:100%;color:var(--muted);font-size:.92rem;margin:0}
+@media(max-width:520px){.partnership .partner-logo{height:92px;width:min(210px,42vw);padding:7px}.partnership .logos{gap:10px}.partnership .plus{font-size:1.2rem}}
+
 </style>
 </head>
 <body>
@@ -457,6 +468,15 @@ function pHome() {
     <p>${L("مبادرة تجمع التقنيين وطلاب الـIT مع طلاب التخصصات التربوية والمعلمين والمعلمات، لتحويل الدروس والأهداف التعليمية في مختلف المواد إلى ألعاب وتجارب تفاعلية.", "A space that brings education and technology together so teachers and educators can turn their ideas into interactive digital experiences.")}</p>
     <div class="row"><button class="btn" data-go="paths">${L("انضم إلى المبادرة", "Join the initiative")}</button><button class="btn alt" data-go="about">${L("اكتشف فكرة المبادرة", "Discover the idea")}</button></div>
   </div>${heroArt()}</div></section>
+  <section class="partnership" aria-label="شركاء المبادرة"><div class="wrap inner">
+    <div class="heading">${L("بشراكة جامعة الأقصى والنادي الهندسي والتكنولوجي", "In partnership with Al-Aqsa University and the Engineering & Technology Club")}</div>
+    <div class="logos">
+      <img class="partner-logo" src="assets/al-aqsa-university.webp" alt="شعار جامعة الأقصى" loading="lazy">
+      <span class="plus" aria-hidden="true">+</span>
+      <img class="partner-logo" src="assets/etc-club.webp" alt="شعار النادي الهندسي والتكنولوجي بجامعة الأقصى" loading="lazy">
+    </div>
+    <p class="caption">${L("شراكة تجمع المعرفة الأكاديمية بالابتكار التقني والتعليمي.", "A partnership connecting academic knowledge with technological and educational innovation.")}</p>
+  </div></section>
   <section class="s w" id="about"><div class="wrap"><h2 class="h2">${L("ما هي المبادرة؟", "What is the initiative?")}</h2>
    <p class="lead">${L("مبادرة تقوم على التوأمة بين المجالين التقني والتربوي. يساهم التقنيون وطلاب الـIT في تعليم ومساندة طلاب التخصصات التربوية والمعلمين والمعلمات لاستخدام أدوات البرمجة والتصميم في إنتاج ألعاب ودروس واختبارات وأنشطة تفاعلية. ويمكن تطبيق الفكرة في اللغة العربية والرياضيات والعلوم والتاريخ وسائر التخصصات، وليس في المواد التقنية أو العلمية فقط. ولا يُشترط امتلاك خبرة كبيرة مسبقة، فالتعلّم والتدريب جزء من المبادرة.", "An initiative to build real collaboration between education and technology majors through joint teams that transfer knowledge, exchange experience and develop digital skills, so teachers can produce their own interactive educational apps and activities.")}</p></div></section>
   <section class="s"><div class="wrap"><div class="band"><h2 class="h2">${L("رؤيتنا", "Our vision")}</h2><p class="vision">${L("كل معلم وتربوي قادر على تقديم مادته وأهدافه التعليمية بطريقة تفاعلية تساعد الطالب على الفهم والمشاركة، بدعم من المعرفة التقنية والعمل المشترك.", "A teacher who owns the tools of the future and can turn educational ideas into interactive digital solutions that can be developed and updated.")}</p></div></div></section>
