@@ -145,11 +145,11 @@ pre.sql{direction:ltr;text-align:left;background:#F8FBFF;border:1px solid var(--
 .partnership{background:#fff;padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .partnership .inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:26px;text-align:center}
 .partnership .heading{width:100%;font-weight:800;color:var(--ink);font-size:1.15rem;margin-bottom:2px}
-.partnership .logos{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;width:100%}
-.partnership .partner-logo{height:112px;width:min(250px,42vw);object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:16px;padding:9px 14px}
+.partnership .logos{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:nowrap;width:100%}
+.partnership .partner-logo{display:block;flex:0 1 250px;height:112px;width:min(250px,calc((100% - 22px)/2));min-width:0;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:16px;padding:9px 14px}
 .partnership .plus{font-size:1.6rem;font-weight:800;color:var(--teal)}
 .partnership .caption{width:100%;color:var(--muted);font-size:.92rem;margin:0}
-@media(max-width:520px){.partnership .partner-logo{height:92px;width:min(210px,42vw);padding:7px}.partnership .logos{gap:10px}.partnership .plus{font-size:1.2rem}}
+@media(max-width:520px){.partnership .partner-logo{flex:1 1 0;height:92px;width:calc((100% - 10px)/2);padding:7px}.partnership .logos{gap:10px;flex-wrap:nowrap}}
 
 </style>
 </head>
@@ -471,9 +471,8 @@ function pHome() {
   <section class="partnership" aria-label="شركاء المبادرة"><div class="wrap inner">
     <div class="heading">${L("بشراكة جامعة الأقصى والنادي الهندسي والتكنولوجي", "In partnership with Al-Aqsa University and the Engineering & Technology Club")}</div>
     <div class="logos">
-      <img class="partner-logo" src="assets/al-aqsa-university.webp" alt="شعار جامعة الأقصى" loading="lazy">
-      <span class="plus" aria-hidden="true">+</span>
-      <img class="partner-logo" src="assets/etc-club.webp" alt="شعار النادي الهندسي والتكنولوجي بجامعة الأقصى" loading="lazy">
+      <img class="partner-logo" src="asseets/al-aqsa-university.webp" alt="شعار جامعة الأقصى" loading="lazy">
+      <img class="partner-logo" src="asseets/etc-club.webp" alt="شعار النادي الهندسي والتكنولوجي بجامعة الأقصى" loading="lazy">
     </div>
     <p class="caption">${L("شراكة تجمع المعرفة الأكاديمية بالابتكار التقني والتعليمي.", "A partnership connecting academic knowledge with technological and educational innovation.")}</p>
   </div></section>
